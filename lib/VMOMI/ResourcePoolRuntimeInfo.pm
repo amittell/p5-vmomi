@@ -1,0 +1,16 @@
+package VMOMI::ResourcePoolRuntimeInfo;
+use parent 'VMOMI::DynamicData';
+
+our @class_members = ( 
+    ['memory', 'ResourcePoolResourceUsage', 0, 1],
+    ['cpu', 'ResourcePoolResourceUsage', 0, 1],
+    ['overallStatus', 'ManagedEntityStatus', 0, 1],
+);
+
+sub get_class_members {
+    my $class = shift;
+    my @super_members = $class->SUPER::get_class_members();
+    return (@super_members, @class_members);
+}
+
+1;

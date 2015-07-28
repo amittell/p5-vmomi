@@ -1,0 +1,16 @@
+package VMOMI::VirtualMachineVMCIDeviceOption;
+use parent 'VMOMI::VirtualDeviceOption';
+
+our @class_members = ( 
+    ['allowUnrestrictedCommunication', 'BoolOption', 0, 1],
+    ['filterSpecOption', 'VirtualMachineVMCIDeviceOptionFilterSpecOption', 0, 0],
+    ['filterSupported', 'BoolOption', 0, 0],
+);
+
+sub get_class_members {
+    my $class = shift;
+    my @super_members = $class->SUPER::get_class_members();
+    return (@super_members, @class_members);
+}
+
+1;
