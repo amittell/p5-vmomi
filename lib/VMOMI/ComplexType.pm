@@ -34,108 +34,106 @@ sub AUTOLOAD {
     return $self->{$name};
 }
 
-# TODO: Cleanup and organize the deserialization and serialization logic around LibXML::Reader
 sub deserialize {
     my ($class, $reader, $si) = @_;
-    my ($self, $parent_depth, $parent_name, $parent_node, $parent_class, $name, $type, $depth);
+    my ($self, $p_depth, $p_name, $p_ntype, $p_class, $name, $type, $depth);
     
     return undef if not defined $reader;
     $self = { };
     
-    $parent_depth = $reader->depth;
-    $parent_name  = $reader->name;  
-    $parent_type  = $reader->nodeType;
-    $parent_class = $reader->getAttributeNs(
+    $p_name  = $reader->name;  
+    $p_depth = $reader->depth;
+    $p_ntype = $reader->nodeType;
+    $p_class = $reader->getAttributeNs(
         'type', 'http://www.w3.org/2001/XMLSchema-instance' );
-    if (defined $parent_class) {
-        $class = P5NS . "::$parent_class";
+    if (defined $p_class) {
+        $p_class = P5NS . "::$p_class";
+    } else {
+        $p_class = $class;
     }
     
-    # Enumerate child nodes (members)
-    do {            
-        $reader->read;
-        my ($member_info, $value, $child_class, $child_type, $content, $val, $val_type);        
+    while ($reader->read) {
+        my ($c_depth, $c_name, $c_ntype, $member_info, $content, $value, $value_type, 
+            $ns_class);
+                
+        $c_name  = $reader->name;
+        $c_depth = $reader->depth;
+        $c_ntype = $reader->nodeType;
+        $c_class = $reader->getAttributeNs(
+            'type', 'http://www.w3.org/2001/XMLSchema-instance' );
+
+        last if ($c_name eq $p_name and $c_ntype != $p_ntype and $c_depth == $p_depth);
+        next if not $c_ntype == 1;
         
-        $depth = $reader->depth;
-        $name  = $reader->name; 
-        $type  = $reader->nodeType;
+        ($member_info) = grep { $_->[0] eq $c_name } $p_class->get_class_members;
+        if (not defined $member_info) {
+            Exception::Deserialize->throw(
+                message => "deserialization error: undefined class member '$c_name'" .
+                    " for class '$p_class'"
+            );
+        }
         
-        ## Start element
-        if ($type == 1) {
-            ($member_info) = grep { $_->[0] eq $name } $class->get_class_members;
-            if (not defined $member_info) {
-                Exception::Deserialize->throw(
-                    message => "deserialization error: undefined class member '$name'" .
-                        " for '$class'"
-                );
-            }
-            
-            my ($member_name, $member_class, $is_array, $is_mandatory) = @$member_info;
-            
-            $child_class = $reader->getAttributeNs(
-                'type','http://www.w3.org/2001/XMLSchema-instance' );
-            if ($child_class =~ m/boolean/) {
-                $child_class = 'boolean';
-            } elsif ($child_class =~ m/^xsd:/) {
-                $child_class = undef;
-            }
-            if (not defined $child_class) {
-                $child_class = $member_class;
-            }
-        
-            ## Deserialize member value
-            if (defined $child_class) {
-                if ($child_class eq 'boolean') {
-                    $content = $reader->readInnerXml;
-                    if ($content =~ m/(true|1)/i) {
-                        $val = 1;
-                    } elsif ($content =~ m/(false|0)/i) {
-                        $val = 0;
-                    } else {
-                        Exception::Deserialize->throw(
-                            message => "deserialization error: server returned '$val'" .
-                                " as a boolean for class member '$member_name' in class " .
-                                "'$class'"
-                        );
-                    }
-                } else {
-                    # SimpleType, ComplexType, ManagedObjectReference, etc
-                    $child_class = P5NS . "::$child_class";
-                    $val = $child_class->deserialize($reader, $si);
-                }
-            } else {
-                # Text value (string, integer, double, etc)
-                $val = $reader->readInnerXml;
-            }
-    
-            # ManagedObjectReference; determine ManagedObject type and deserialize 
-            if (ref $val eq P5NS . "::ManagedObjectReference") {
-                $child_class = P5NS . "::" . $val->type;
-                # TODO: Add constructor method unique to ManagedObject for instantiation
-                $val = $child_class->new($si, $val);
-            }
-            
-            ## Array values are returned as references [ ]
-            if ($is_array) {
-                $self->{$name} = [ ] if not defined $self->{$name};
-                push @{ $self->{$name} }, $val;
-            } else {
-                $self->{$name} = $val;
-            }
-            
-            # Convert ArrayOf* objects to perl arrays
-            $val_type = ref $val;
-            if ($val_type =~ m/ArrayOf.*/) {
-                @keyvalues = %$val;
-                if (@keyvalues) {
-                    $self->{$name} = pop @keyvalues;
-                }
+        if (defined $c_class) {
+            if ($c_class =~ m/boolean/) {
+                $c_class = 'boolean';
+            } elsif ($c_class =~ m/^xsd:/) {
+                $c_class = undef;
             }
         }
-    } until ($name eq $parent_name and $type != $parent_node and $depth == $parent_depth);
-    return bless $self, $class;
-}
 
+        my ($m_name, $m_class, $is_array, $is_mandatory) = @$member_info;
+        $c_class = $m_class if not defined $c_class;
+
+        if ($c_class) {
+            if ($c_class eq 'boolean') {
+                $content = $reader->readInnerXml;
+                if ($content =~ m/(true|1)/i) {
+                    $value = 1;
+                } elsif ($content =~ m/(false|0)/i) {
+                    $value = 0;
+                } else {
+                    Exception::Deserialize->throw(
+                        message => "deserialization error: server returned '$content'" .
+                            " as a boolean for member '$name' in class '$p_class'"
+                    );
+                }
+            } else {
+                # SimpleType, ComplexType
+                $ns_class = P5NS . "::$c_class";
+                $value = $ns_class->deserialize($reader, $si);
+            }            
+        
+        } else {
+            # xsd type; deserialize as string
+            $value = $reader->readInnerXml;
+        }
+        
+        # ManagedObjectReference; determine ManagedObject class and deserialize 
+        if (ref $value eq P5NS . "::ManagedObjectReference") {
+            $ns_class = P5NS . "::" . $value->type;
+            # TODO: Add constructor method unique to ManagedObject for instantiation
+            $value = $ns_class->new($si, $value);
+        }
+        
+        ## Array values are returned as references [ ]
+        if ($is_array) {
+            $self->{$m_name} = [ ] if not defined $self->{$m_name};
+            push @{ $self->{$m_name} }, $value;
+        } else {
+            $self->{$m_name} = $value;
+        }
+        
+        # Convert ArrayOf* objects to perl arrays
+        $value_type = ref $value;
+        if ($value_type =~ m/ArrayOf.*/) {
+            @keyvalues = %$value;
+            if (@keyvalues) {
+                $self->{$m_name} = pop @keyvalues;
+            }
+        }
+    }
+    return bless $self, $p_class;
+}
 
 sub serialize {
     my ($self, $tag, $emit_type) = @_;
@@ -146,107 +144,107 @@ sub serialize {
         $node->setAttribute('xsi:type', $emit_type);
     }
     
-    $parent_class = ref $self;
+    $p_class = ref $self;
 
     ## Enumerate expected class members; extract for serialization
-    foreach my $info ( $self->get_class_members ) {
-        my ($member_name, $member_class, $is_array, $is_mandatory, $member_value, @values);
-        ($member_name, $member_class, $is_array, $is_mandatory) = @$info;      
+    foreach my $member_info ( $self->get_class_members ) {
+        my ($m_name, $m_class, $is_array, $is_mandatory, $m_value, @values);
+        ($m_name, $m_class, $is_array, $is_mandatory) = @$member_info;      
         
         ## Mandatory property missing warning; probably not necessary, but the WSDL does
         ## not always seem consistent.
-        if ($is_mandatory and not exists $self->{$member_name}) {
-            warn "serialization warning: mandatory property '$member_name' missing" .
-                 " in class '$parent_class'";
+        if ($is_mandatory and not exists $self->{$m_name}) {
+            warn "serialization warning: mandatory property '$m_name' missing" .
+                 " in class '$p_class'";
             next;
         }
         
         ## Coerce all member values into an array for serialization as child elements
-        if (exists $self->{$member_name}) {
-            $member_value = $self->{$member_name};
-            if (ref $member_value eq 'ARRAY') {
-                @values = @$member_value;
+        if (exists $self->{$m_name}) {
+            $m_value = $self->{$m_name};
+            if (ref $m_value eq 'ARRAY') {
+                @values = @$m_value;
             } else {
-                @values = ($member_value);
+                @values = ($m_value);
             }
         } else {
             @values = ( );
         }
         
         foreach my $val (@values) {
-            my ($child_node, $child_class, $child_value, $child_type);
+            my ($c_node, $c_class, $c_value, $c_type);
             
-            $child_node = new XML::LibXML::Element($member_name);
+            $c_node = new XML::LibXML::Element($m_name);
             
             # Add empty child node when child value is undefined
             if (not defined $val) {
-                $node->addChild($child_node);
+                $node->addChild($c_node);
                 next;
             }
 
-            if (defined $member_class) {
+            if (defined $m_class) {
                 # Boolean
-                if ($member_class eq 'boolean') {
+                if ($m_class eq 'boolean') {
                     if ($val =~ m/(true|1)/i) {
-                        $child_value = 'true';
+                        $c_value = 'true';
                     } elsif ($val =~ m/(false|0)/i) {
-                        $child_value = 'false';
+                        $c_value = 'false';
                     } else {
                         Exception::Serialize->throw(
-                            message => "serialization error: cannot convert '$val' to" .
-                                " boolean for member '$member_name' in class '$member_class'"
+                            message => "serialization error: cannot convert '$c_value' to" .
+                                " boolean for member '$m_name' in class '$m_class'"
                         );
                     }
-                    $child_node->appendText($child_value);
-                    $node->addChild($child_node);
+                    $c_node->appendText($c_value);
+                    $node->addChild($c_node);
                     next;
                 }
                 
                 # ComplexType, SimpleType
-                $child_class = ref $val;
+                $c_class = ref $val;
 
-                if (P5NS . "::$member_class" ne $child_class) {
-                    $child_type = $member_class;
-                    if ($member_class eq 'anyType' and not $child_class) {
+                if (P5NS . "::$m_class" ne $c_class) {
+                    $c_type = $m_class;
+                    if ($m_class eq 'anyType' and not $c_class) {
                         # Follow VIPerl pattern of sending all anyTypes as xsd:string.  This
                         # is known to be broken for some data types; implement Primitive object.
                         
                         # TODO: Pretty sure this logic is broken for anyType...fix it!!
-                        $child_node->setAttribute('xsi:type', 'xsd:string');
-                        $child_node->appendText($val);
-                        $node->addChild($child_node);
+                        $c_node->setAttribute('xsi:type', 'xsd:string');
+                        $c_node->appendText($val);
+                        $node->addChild($c_node);
 
                         next;
                     } 
                 } 
                 
-                if ($member_class eq 'ManagedObjectReference') {
-                    if ($child_class ne P5NS . "::ManagedObjectReference") {
+                if ($m_class eq 'ManagedObjectReference') {
+                    if ($c_class ne P5NS . "::ManagedObjectReference") {
                         # ManagedObject or ManagedEntity; extract ManagedObjectReference
                         # TODO: Add error handling here
                         $val = $val->{'_moref'};
                     }
                 }
                 
-                if ($member_class ne 'anyType') {
-                    if (not $child_class or not $child_class->isa(P5NS . "::$member_class")) {
+                if ($m_class ne 'anyType') {
+                    if (not $c_class or not $c_class->isa(P5NS . "::$m_class")) {
                         Exception::Serialize->throw(
-                            message => "serialization error: cannot serialize '$member_name'" .
-                                " as '$member_class' in class '$child_class'"
+                            message => "serialization error: cannot serialize '$m_name'" .
+                                " as '$m_class' in class '$c_class'"
                         );
                     }
                 }
                 
-                if ($child_type) {
-                    $child_node = $val->serialize($member_name, $child_type);
+                if ($c_type) {
+                    $c_node = $val->serialize($m_name, $c_type);
                 } else {
-                    $child_node = $val->serialize($member_name);
+                    $c_node = $val->serialize($m_name);
                 }
-                $node->addChild($child_node);
+                $node->addChild($c_node);
             } else {
                 # Primitive
-                $child_node->appendText($val);
-                $node->addChild($child_node);
+                $c_node->appendText($val);
+                $node->addChild($c_node);
             }
         }
     }
