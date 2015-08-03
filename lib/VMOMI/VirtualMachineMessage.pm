@@ -3,7 +3,7 @@ use parent 'VMOMI::DynamicData';
 
 our @class_members = ( 
     ['id', undef, 0, 1],
-    ['argument', undef, 1, 0],
+    ['argument', 'anyType', 1, 0],
     ['text', undef, 0, 0],
 );
 

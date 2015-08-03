@@ -4,7 +4,7 @@ use parent 'VMOMI::DynamicData';
 our @class_members = ( 
     ['name', undef, 0, 1],
     ['op', 'PropertyChangeOp', 0, 1],
-    ['val', undef, 0, 0],
+    ['val', 'anyType', 0, 0],
 );
 
 sub get_class_members {

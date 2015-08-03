@@ -18,25 +18,32 @@ sub new {
 
 sub AUTOLOAD {
     my $self = shift;
-    my $name = our $AUTOLOAD;
-        
+    my ($name, $class);
+    $name  = our $AUTOLOAD;
+    $class = ref $self;
+
     return if $name =~ /::DESTROY$/;
     $name =~ s/.*:://;
     
-    $self->{$name} = shift if @_;
     
-    if (not exists $self->{$name}) {
+    if ( grep { $_->[0] eq $name } $class->get_class_members ) {
+        $self->{$name} = shift if @_;
+    } else {
         Exception::Autoload->throw(
             message => "unknown property '$name' in " . ref $self
         );
     }
     
-    return $self->{$name};
+    if (exists $self->{$name}) {
+        return $self->{$name};
+    } else {
+        return undef;
+    }
 }
 
 sub deserialize {
-    my ($class, $reader, $si) = @_;
-    my ($self, $p_depth, $p_name, $p_ntype, $p_class, $name, $type, $depth);
+    my ($class, $reader, $stub) = @_;
+    my ($self, $p_depth, $p_name, $p_ntype, $p_class);
     
     return undef if not defined $reader;
     $self = { };
@@ -51,7 +58,7 @@ sub deserialize {
     } else {
         $p_class = $class;
     }
-    
+
     while ($reader->read) {
         my ($c_depth, $c_name, $c_ntype, $member_info, $content, $value, $value_type, 
             $ns_class);
@@ -61,7 +68,7 @@ sub deserialize {
         $c_ntype = $reader->nodeType;
         $c_class = $reader->getAttributeNs(
             'type', 'http://www.w3.org/2001/XMLSchema-instance' );
-
+        
         last if ($c_name eq $p_name and $c_ntype != $p_ntype and $c_depth == $p_depth);
         next if not $c_ntype == 1;
         
@@ -76,13 +83,19 @@ sub deserialize {
         if (defined $c_class) {
             if ($c_class =~ m/boolean/) {
                 $c_class = 'boolean';
-            } elsif ($c_class =~ m/^xsd:/) {
+            } elsif ($c_class =~ m/^xsd/) {
                 $c_class = undef;
             }
         }
 
         my ($m_name, $m_class, $is_array, $is_mandatory) = @$member_info;
-        $c_class = $m_class if not defined $c_class;
+        if (not defined $c_class) {
+            if ($m_class eq 'anyType') {
+                $c_class = undef;
+            } else {
+                $c_class = $m_class;
+            }
+        }
 
         if ($c_class) {
             if ($c_class eq 'boolean') {
@@ -100,7 +113,7 @@ sub deserialize {
             } else {
                 # SimpleType, ComplexType
                 $ns_class = P5NS . "::$c_class";
-                $value = $ns_class->deserialize($reader, $si);
+                $value = $ns_class->deserialize($reader, $stub);
             }            
         
         } else {
@@ -112,7 +125,7 @@ sub deserialize {
         if (ref $value eq P5NS . "::ManagedObjectReference") {
             $ns_class = P5NS . "::" . $value->type;
             # TODO: Add constructor method unique to ManagedObject for instantiation
-            $value = $ns_class->new($si, $value);
+            $value = $ns_class->new($stub, $value);
         }
         
         ## Array values are returned as references [ ]
@@ -137,7 +150,7 @@ sub deserialize {
 
 sub serialize {
     my ($self, $tag, $emit_type) = @_;
-    my ($node, @class_members, $parent_class);
+    my ($node, @class_members, $p_class);
     
     $node = new XML::LibXML::Element($tag);
     if ($emit_type) {
@@ -146,20 +159,12 @@ sub serialize {
     
     $p_class = ref $self;
 
-    ## Enumerate expected class members; extract for serialization
+    ## Enumerate expected class members
     foreach my $member_info ( $self->get_class_members ) {
-        my ($m_name, $m_class, $is_array, $is_mandatory, $m_value, @values);
-        ($m_name, $m_class, $is_array, $is_mandatory) = @$member_info;      
+        my ($m_name, $m_class, $is_array, $is_mandatory) = @$member_info;      
+        my ($m_value, @values);
         
-        ## Mandatory property missing warning; probably not necessary, but the WSDL does
-        ## not always seem consistent.
-        if ($is_mandatory and not exists $self->{$m_name}) {
-            warn "serialization warning: mandatory property '$m_name' missing" .
-                 " in class '$p_class'";
-            next;
-        }
-        
-        ## Coerce all member values into an array for serialization as child elements
+        ## Coerce all member values into an array
         if (exists $self->{$m_name}) {
             $m_value = $self->{$m_name};
             if (ref $m_value eq 'ARRAY') {
@@ -202,36 +207,23 @@ sub serialize {
                 
                 # ComplexType, SimpleType
                 $c_class = ref $val;
-
-                if (P5NS . "::$m_class" ne $c_class) {
-                    $c_type = $m_class;
-                    if ($m_class eq 'anyType' and not $c_class) {
-                        # Follow VIPerl pattern of sending all anyTypes as xsd:string.  This
-                        # is known to be broken for some data types; implement Primitive object.
-                        
-                        # TODO: Pretty sure this logic is broken for anyType...fix it!!
-                        $c_node->setAttribute('xsi:type', 'xsd:string');
+                
+                if ($m_class eq 'anyType' or
+                    $c_class ne P5NS . "::$m_class") {
+                    if ($c_class) {
+                        $c_type = $c_class;
+                        $c_type =~ s/.*:://;
+                    } else {
+                        # If not a class, assume a 'string' value
                         $c_node->appendText($val);
                         $node->addChild($c_node);
-
                         next;
-                    } 
-                } 
-                
-                if ($m_class eq 'ManagedObjectReference') {
-                    if ($c_class ne P5NS . "::ManagedObjectReference") {
-                        # ManagedObject or ManagedEntity; extract ManagedObjectReference
-                        # TODO: Add error handling here
-                        $val = $val->{'_moref'};
                     }
                 }
                 
-                if ($m_class ne 'anyType') {
-                    if (not $c_class or not $c_class->isa(P5NS . "::$m_class")) {
-                        Exception::Serialize->throw(
-                            message => "serialization error: cannot serialize '$m_name'" .
-                                " as '$m_class' in class '$c_class'"
-                        );
+                if ($m_class eq 'ManagedObjectReference') {
+                    if ($c_class->isa(P5NS . "::ManagedObject")) {
+                        $val = $val->{'moref'};
                     }
                 }
                 

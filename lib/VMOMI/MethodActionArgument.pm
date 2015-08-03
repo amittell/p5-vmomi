@@ -2,7 +2,7 @@ package VMOMI::MethodActionArgument;
 use parent 'VMOMI::DynamicData';
 
 our @class_members = ( 
-    ['value', undef, 0, 0],
+    ['value', 'anyType', 0, 0],
 );
 
 sub get_class_members {

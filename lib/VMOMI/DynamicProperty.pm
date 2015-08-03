@@ -3,7 +3,7 @@ use parent 'VMOMI::ComplexType';
 
 our @class_members = ( 
     ['name', undef, 0, 1],
-    ['val', undef, 0, 1],
+    ['val', 'anyType', 0, 1],
 );
 
 sub get_class_members {

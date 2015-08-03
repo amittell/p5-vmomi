@@ -10,7 +10,7 @@ use Getopt::Long;
 use Data::Dumper;
 use Try::Tiny;
 
-my ($host, $user, $pass, $si, $content, $fault, $sm, $session, $session_ok);
+my ($host, $user, $pass, $stub, $si, $content, $fault, $sm, $session, $session_ok);
 
 $user = undef;
 $pass = undef;
@@ -24,16 +24,17 @@ GetOptions(
 
 die "Must specify user and pass parameters" if not (defined $user and defined $pass);
 
-$si = new VMOMI::ServiceInstance(
-    host => $host ) || die "Failed to initialize ServiceInstance";
+$stub = new VMOMI::SoapStub(host => $host) || die "Failed to initialize SoapStub";
 
-$content = $si->RetrieveServiceContent(
-    _this => new VMOMI::ManagedObjectReference(
-    	type  => 'ServiceInstance', 
-    	value => 'ServiceInstance',
-    )
+$si = new VMOMI::ServiceInstance(
+    $stub, 
+    new VMOMI::ManagedObjectReference(
+        type => 'ServiceInstance',
+        value => 'ServiceInstance',
+    ),
 );
 
+$content = $si->RetrieveServiceContent(_this => $si);
 $sm = $content->sessionManager;
 
 try {
@@ -45,13 +46,17 @@ try {
 	die $_;
 };
 
+#print Dumper($si->capability);
+
+
 print "Current session userName: " . $sm->currentSession->userName . "\n";
 
 print "rootFolder name: " . $content->rootFolder->name . "\n";
 print "Connected to vSphere API version: " . $content->about->version . "\n";
 
 print "A VM name is: ";
-print $content->rootFolder->childEntity->[0]->vmFolder->childEntity->[2]->name . "\n";
+print $content->rootFolder->childEntity->[0]->vmFolder->childEntity->[3]->name . "\n";
+
 
 $sm->Logout( );
 

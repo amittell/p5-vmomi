@@ -50,6 +50,9 @@ foreach (XSD_FILES_TYPES) {
 			if ($type =~ m/^xsd:boolean/) {
 				$type = 'boolean';
 			} 
+			if ($type =~ m/^xsd:anyType/) {
+			    $type = 'anyType';
+			}
 			if ($type =~ m/^xsd:/) {
 				$type = undef;
 			}
@@ -104,7 +107,15 @@ foreach (XSD_FILES_REQUESTS) {
 			$max  = $member_node->getAttribute('maxOccurs');
 	
 			$type =~ s/^vim25://;
-			$type = undef if ($type =~ m/^xsd:/);
+			if ($type =~ m/^xsd:boolean/) {
+				$type = 'boolean';
+			} 
+			if ($type =~ m/^xsd:anyType/) {
+			    $type = 'anyType';
+			}
+			if ($type =~ m/^xsd:/) {
+				$type = undef;
+			}
 	
 			push @members, [$name, $type, $min, $max];
 		}
@@ -144,7 +155,15 @@ foreach (XSD_FILES_RESPONSES) {
 			$max  = $returnval->getAttribute('maxOccurs');
 	
 			$type =~ s/^vim25://;
-			$type = undef if $type =~ m/xsd:/;
+			if ($type =~ m/^xsd:boolean/) {
+				$type = 'boolean';
+			} 
+			if ($type =~ m/^xsd:anyType/) {
+			    $type = 'anyType';
+			}
+			if ($type =~ m/^xsd:/) {
+				$type = undef;
+			}
 			
 			$is_array = (defined $max) ? 1 :0;
 		}
@@ -172,6 +191,15 @@ foreach (XSD_FILES_RESPONSES) {
 		$type = $node->getAttribute('type');
 		die "Expected an operation request type for operation '$name'" unless defined $type;
 		$type =~ s/^vim25://;
+        if ($type =~ m/^xsd:boolean/) {
+            $type = 'boolean';
+        } 
+        if ($type =~ m/^xsd:anyType/) {
+            $type = 'anyType';
+        }
+        if ($type =~ m/^xsd:/) {
+            $type = undef;
+        }
 		
 		$operation = new VimOperation(name => $name);
 		
@@ -272,10 +300,10 @@ foreach (sort keys %SimpleTypes) {
 	close FILE;
 }
 
-open FILE, ">" . MODLIB . "/ServiceInstanceOps.pm" or die "Failed to open " . MODLIB . "/ServiceInstanceOps.pm";
+open FILE, ">" . MODLIB . "/SoapStub.pm" or die "Failed to open " . MODLIB . "/SoapStub.pm";
 
-print FILE "package " . P5NS . "::ServiceInstanceOps;\n";
-print FILE "use parent '" . P5NS . "::ServiceInstanceSoap';\n\n";
+print FILE "package " . P5NS . "::SoapStub;\n";
+print FILE "use parent '" . P5NS . "::SoapBase';\n\n";
 #print FILE "sub new {\n";
 #print FILE "    my (\$class, \%args) = \@_;\n";
 #print FILE "    return \$class->SUPER::new(\%args);\n";

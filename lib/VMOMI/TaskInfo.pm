@@ -14,7 +14,7 @@ our @class_members = (
     ['cancelled', 'boolean', 0, 1],
     ['cancelable', 'boolean', 0, 1],
     ['error', 'LocalizedMethodFault', 0, 0],
-    ['result', undef, 0, 0],
+    ['result', 'anyType', 0, 0],
     ['progress', undef, 0, 0],
     ['reason', 'TaskReason', 0, 1],
     ['queueTime', undef, 0, 1],

@@ -2,7 +2,7 @@ package VMOMI::ArrayOfAnyType;
 use parent 'VMOMI::ComplexType';
 
 our @class_members = ( 
-    ['anyType', undef, 1, 0],
+    ['anyType', 'anyType', 1, 0],
 );
 
 sub get_class_members {

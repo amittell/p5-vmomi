@@ -10,7 +10,7 @@ our @class_members = (
     ['prevRunTime', undef, 0, 0],
     ['state', 'TaskInfoState', 0, 1],
     ['error', 'LocalizedMethodFault', 0, 0],
-    ['result', undef, 0, 0],
+    ['result', 'anyType', 0, 0],
     ['progress', undef, 0, 0],
     ['activeTask', 'ManagedObjectReference', 0, 0],
     ['taskObject', 'ManagedObjectReference', 0, 0],

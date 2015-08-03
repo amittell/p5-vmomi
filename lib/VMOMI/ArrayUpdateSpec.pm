@@ -3,7 +3,7 @@ use parent 'VMOMI::DynamicData';
 
 our @class_members = ( 
     ['operation', 'ArrayUpdateOperation', 0, 1],
-    ['removeKey', undef, 0, 0],
+    ['removeKey', 'anyType', 0, 0],
 );
 
 sub get_class_members {

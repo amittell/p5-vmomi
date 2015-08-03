@@ -15,6 +15,8 @@ sub AUTOLOAD {
     $name =~ s/.*://;
     
     # If name is part of the class definition, retrieve the property
+    
+    # Without stub, nothing to do?
     my $class = ref($self);
     my $type = $class;
     $type =~ s/.*:://;
@@ -37,7 +39,7 @@ sub AUTOLOAD {
         $spec->objectSet($oSet);
         $spec->propSet($pSet);
         
-        my $result = $self->si->RetrievePropertiesEx(
+        my $result = $self->stub->RetrievePropertiesEx(
             _this => $pcoll, 
             specSet => [$spec],
             options => $options
@@ -45,7 +47,17 @@ sub AUTOLOAD {
         
         my $value = undef;
         # Ignoring token, *shouldn't require more than one iteration*
+        # Also adding some hacked detection for permission errors when retrieving properties
+        # before a login.
         for my $object (@{$result->objects}) {
+            if (defined $object->missingSet) {
+                my $fault = $object->missingSet->[0]->fault->fault;
+                my $fault_type = ref $fault;
+                $fault_type =~ s/.*:://;
+                Exception::SoapFault->throw(
+                    message     => "fault: $fault_type",
+                );
+            }
             for my $property (@{$object->propSet}) {
                 if ($property->name eq $name) {
                     $self->{$name} = $property->val;
@@ -65,28 +77,28 @@ sub AUTOLOAD {
     # Try a method invocation against the API
     my %args = @_;
     $args{'_this'} = $self->{'moref'};
-    my $method = $self->si->can($name);
+    my $method = $self->stub->can($name);
     unless ($method) {
         Exception::Autoload->throw(message => "Unknown method '$name' in " . ref($self));
     }
-    return $self->si->$method(%args);
+    return $self->stub->$method(%args);
 }
 
 sub new {
-    my ($class, $si, $moref, %args) = @_;
+    my ($class, $stub, $moref, %args) = @_;
     my $self = $class->SUPER::new(%args);
     
-    if (ref($si) ne P5NS . '::ServiceInstance') {
-        die "Parameter (0) to class '$class' constructor must be VMOMI::ServiceInstance: ";
+    if (ref($stub) ne P5NS . '::SoapStub') {
+        die "Parameter (0) to class '$class' constructor must be VMOMI::SoapStub: ";
     }
     if (ref($moref) ne P5NS . '::ManagedObjectReference') {
         die "Parameter (1) to class '$class' constructor must be VMOMI::ManagedObjectReference";
     } 
-    $self->{si}     = $si;
-    $self->{moref}  = $moref;
+    $self->{'stub'}   = $stub;
+    $self->{'moref'}  = $moref;
     
     # Is weaken necessary here?
-    weaken $self->{si};
+    weaken $self->{'stub'};
     return bless $self, $class;
 }
 
