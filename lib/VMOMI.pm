@@ -6,7 +6,6 @@ use warnings;
 
 our $VERSION = '6.0.0001';
 
-
 use Class::Autouse qw( );
 use Exception::Class(
     'Exception',
@@ -24,8 +23,5 @@ use Exception::Class(
 );
 
 Class::Autouse->autouse_recursive("VMOMI");
-
-
-
 
 1;

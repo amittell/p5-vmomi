@@ -1,5 +1,7 @@
 package VMOMI::SimpleType;
 
+use Encode qw(decode_utf8 encode_utf8);
+
 sub new {
     my ($class, $val) = @_;
     return bless { val => $val }, $class;

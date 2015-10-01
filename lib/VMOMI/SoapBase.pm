@@ -19,10 +19,10 @@ sub AUTOLOAD {
     my $name = our $AUTOLOAD;
         
     return if $name =~ /::DESTROY$/;
-    $name =~ s/.*://;
+    $name =~ s/.*:://;
     
     if (not exists $self->{$name}) {
-        Exception::Autoload->throw(message => "unknown accessor '$name' in " . ref($self));
+        Exception::Autoload->throw(message => "unknown accessor '$name' in " . ref $self);
     }
     
     $self->{$name} = shift if @_;
@@ -192,7 +192,7 @@ sub service_namespace {
         ($namespace) = $target =~ /^(urn:vim[0-9a-zA-Z]+)(?:Service)/;
     } else {
         Exception::Protocol->throw(
-            message => "Service target namespace (" . $uri->path . ") unavailable: $@",
+            message => "Service target namespace (" . $uri->path . ") unavailable: $@", # bug here?  remove $@
         );
     }
     return $self->{'service_namespace'} = $namespace;
@@ -330,14 +330,17 @@ sub soap_call {
 sub soap_node {
     my ($self, $value, $type, $x_name, $x_type) = @_;
     my ($node);
-
+    
+    
     if (defined $x_type) {
+# TODO: This is likely a problem - anyType will not always match, and boolean $type comes
+# in as undef.
         # Expecting ComplexType, SimpleType, boolean
-        if (not defined $type or $type ne $x_type) {
-            Exception::Serialize->throw(
-                message => "serialization error: unexpected type '$type' for '$x_name'\n"
-            );
-        }
+#        if (not defined $type or $type ne $x_type) {
+#            Exception::Serialize->throw(
+#                message => "serialization error: unexpected type '$type' for '$x_name'\n"
+#            );
+#        }
         
         if (defined $value) {
             # boolean
@@ -352,6 +355,9 @@ sub soap_node {
                             " boolean for member '$x_name'"
                     );
                 }
+                $node = new XML::LibXML::Element($x_name);
+                $node->appendText($value);
+                return $node
             }
         
             # ManagedObjectReference

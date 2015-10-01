@@ -148,6 +148,8 @@ sub deserialize {
     return bless $self, $p_class;
 }
 
+# TODO: Review the overall serialize logic, hitting a few bugs, particularly around anyType,
+# emits and arrays?
 sub serialize {
     my ($self, $tag, $emit_type) = @_;
     my ($node, @class_members, $p_class);
@@ -205,19 +207,14 @@ sub serialize {
                     next;
                 }
                 
-                # ComplexType, SimpleType
+                # ComplexType, SimpleType, PrimitiveType
                 $c_class = ref $val;
-                
-                if ($m_class eq 'anyType' or
-                    $c_class ne P5NS . "::$m_class") {
-                    if ($c_class) {
-                        $c_type = $c_class;
-                        $c_type =~ s/.*:://;
-                    } else {
-                        # If not a class, assume a 'string' value
+                if ($m_class eq 'anyType') {
+                    unless (defined $c_class) {
+                        # If value is not an object, serialize as unspecified 'string'
                         $c_node->appendText($val);
                         $node->addChild($c_node);
-                        next;
+                        next; 
                     }
                 }
                 
@@ -225,6 +222,11 @@ sub serialize {
                     if ($c_class->isa(P5NS . "::ManagedObject")) {
                         $val = $val->{'moref'};
                     }
+                }
+                
+                if (defined $c_class) {
+                    $c_type = $c_class;
+                    $c_type =~ s/.*:://;
                 }
                 
                 if ($c_type) {

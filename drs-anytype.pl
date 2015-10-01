@@ -50,8 +50,39 @@ print "Current session userName: " . $sm->currentSession->userName . "\n";
 print "rootFolder name: " . $content->rootFolder->name . "\n";
 print "Connected to vSphere API version: " . $content->about->version . "\n";
 
-print "A VM name is: ";
-print $content->rootFolder->childEntity->[0]->vmFolder->childEntity->[3]->name . "\n";
+my $vm1 = new VMOMI::VirtualMachine(
+    $stub, 
+    new VMOMI::ManagedObjectReference(
+        type => 'VirtualMachine',
+        value => 'vm-982'
+    )
+);
+
+my $cluster = new VMOMI::ClusterComputeResource($stub,
+    new VMOMI::ManagedObjectReference(
+        type => 'ClusterComputeResource',
+        value => 'domain-c3351'
+    )
+);
+
+print "A cluster name is: ";
+print $cluster->name . "\n";
+
+my $rules = $cluster->configurationEx->rule;
+
+foreach my $rule ( @$rules ) {
+    print $rule->name . "\n";
+    print $rule->enabled . "\n";
+    $rule->enabled(1);
+}
+
+my $rulespec = new VMOMI::ClusterRuleSpec(
+    info => $rules->[0], 
+    operation => new VMOMI::ArrayUpdateOperation('edit')
+);
+my $spec = new VMOMI::ClusterConfigSpec(rulesSpec => [$rulespec], modify => 0);
+
+$cluster->ReconfigureCluster_Task(spec => $spec, modify => 1);
 
 $sm->Logout( );
 
