@@ -73,14 +73,14 @@ my $rules = $cluster->configurationEx->rule;
 foreach my $rule ( @$rules ) {
     print $rule->name . "\n";
     print $rule->enabled . "\n";
-    $rule->enabled(0);
-    $rule->name('renamed2');
+    $rule->enabled(1);
+    $rule->name('CoolName');
 }
 
 my $rulespec = new VMOMI::ClusterRuleSpec(
     info => $rules->[0], 
-    operation => new VMOMI::ArrayUpdateOperation('remove'),
-    removeKey => new VMOMI::PrimitiveType($rules->[0]->key, "int"),
+    operation => new VMOMI::ArrayUpdateOperation('edit'),
+#    removeKey => new VMOMI::PrimitiveType($rules->[0]->key, "int"),
 );
 my $spec = new VMOMI::ClusterConfigSpec(rulesSpec => [$rulespec], modify => 0);
 

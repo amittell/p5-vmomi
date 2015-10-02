@@ -332,16 +332,7 @@ sub soap_node {
     my ($node);
     
     
-    if (defined $x_type) {
-# TODO: This is likely a problem - anyType will not always match, and boolean $type comes
-# in as undef.
-        # Expecting ComplexType, SimpleType, boolean
-#        if (not defined $type or $type ne $x_type) {
-#            Exception::Serialize->throw(
-#                message => "serialization error: unexpected type '$type' for '$x_name'\n"
-#            );
-#        }
-        
+    if (defined $x_type) {        
         if (defined $value) {
             # boolean
             if ($x_type eq 'boolean') {
