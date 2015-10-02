@@ -1,10 +1,20 @@
 package VMOMI::DuplicateIpDetectedEvent;
 use parent 'VMOMI::HostEvent';
 
+our @class_ancestors = ( 
+    'HostEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['duplicateIP', undef, 0, 1],
     ['macAddress', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

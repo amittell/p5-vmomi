@@ -1,9 +1,19 @@
 package VMOMI::DomainNotFound;
 use parent 'VMOMI::ActiveDirectoryFault';
 
+our @class_ancestors = ( 
+    'ActiveDirectoryFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['domainName', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,11 @@
 package VMOMI::HostNasVolume;
 use parent 'VMOMI::HostFileSystemVolume';
 
+our @class_ancestors = ( 
+    'HostFileSystemVolume',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['remoteHost', undef, 0, 1],
     ['remotePath', undef, 0, 1],
@@ -9,6 +14,10 @@ our @class_members = (
     ['securityType', undef, 0, 0],
     ['protocolEndpoint', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,11 +1,20 @@
 package VMOMI::ClusterDasDataSummary;
 use parent 'VMOMI::ClusterDasData';
 
+our @class_ancestors = ( 
+    'ClusterDasData',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['hostListVersion', undef, 0, 1],
     ['clusterConfigVersion', undef, 0, 1],
     ['compatListVersion', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

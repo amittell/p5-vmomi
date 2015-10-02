@@ -1,10 +1,19 @@
 package VMOMI::HostIpRouteConfigSpec;
 use parent 'VMOMI::HostIpRouteConfig';
 
+our @class_ancestors = ( 
+    'HostIpRouteConfig',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['gatewayDeviceConnection', 'HostVirtualNicConnection', 0, 0],
     ['ipV6GatewayDeviceConnection', 'HostVirtualNicConnection', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

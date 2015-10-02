@@ -1,9 +1,18 @@
 package VMOMI::DistributedVirtualSwitchHostMemberPnicBacking;
 use parent 'VMOMI::DistributedVirtualSwitchHostMemberBacking';
 
+our @class_ancestors = ( 
+    'DistributedVirtualSwitchHostMemberBacking',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['pnicSpec', 'DistributedVirtualSwitchHostMemberPnicSpec', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

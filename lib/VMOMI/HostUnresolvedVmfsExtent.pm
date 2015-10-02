@@ -1,6 +1,10 @@
 package VMOMI::HostUnresolvedVmfsExtent;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['device', 'HostScsiDiskPartition', 0, 1],
     ['devicePath', undef, 0, 1],
@@ -11,6 +15,10 @@ our @class_members = (
     ['endBlock', undef, 0, 1],
     ['reason', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

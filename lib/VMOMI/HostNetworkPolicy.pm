@@ -1,12 +1,20 @@
 package VMOMI::HostNetworkPolicy;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['security', 'HostNetworkSecurityPolicy', 0, 0],
     ['nicTeaming', 'HostNicTeamingPolicy', 0, 0],
     ['offloadPolicy', 'HostNetOffloadCapabilities', 0, 0],
     ['shapingPolicy', 'HostNetworkTrafficShapingPolicy', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

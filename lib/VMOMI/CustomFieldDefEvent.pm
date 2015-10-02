@@ -1,10 +1,20 @@
 package VMOMI::CustomFieldDefEvent;
 use parent 'VMOMI::CustomFieldEvent';
 
+our @class_ancestors = ( 
+    'CustomFieldEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['fieldKey', undef, 0, 1],
     ['name', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

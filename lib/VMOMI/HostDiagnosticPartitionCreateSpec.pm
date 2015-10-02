@@ -1,6 +1,10 @@
 package VMOMI::HostDiagnosticPartitionCreateSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['storageType', undef, 0, 1],
     ['diagnosticType', undef, 0, 1],
@@ -8,6 +12,10 @@ our @class_members = (
     ['partition', 'HostDiskPartitionSpec', 0, 1],
     ['active', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

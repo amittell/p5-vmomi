@@ -1,6 +1,10 @@
 package VMOMI::VAppCloneSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['location', 'ManagedObjectReference', 0, 1],
     ['host', 'ManagedObjectReference', 0, 0],
@@ -11,6 +15,10 @@ our @class_members = (
     ['resourceMapping', 'VAppCloneSpecResourceMap', 1, 0],
     ['provisioning', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

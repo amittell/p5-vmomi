@@ -1,7 +1,16 @@
 package VMOMI::OvfValidateHostParams;
 use parent 'VMOMI::OvfManagerCommonParams';
 
+our @class_ancestors = ( 
+    'OvfManagerCommonParams',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

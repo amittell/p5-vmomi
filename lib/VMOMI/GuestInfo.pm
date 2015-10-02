@@ -1,6 +1,10 @@
 package VMOMI::GuestInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['toolsStatus', 'VirtualMachineToolsStatus', 0, 0],
     ['toolsVersionStatus', undef, 0, 0],
@@ -25,6 +29,10 @@ our @class_members = (
     ['guestStateChangeSupported', 'boolean', 0, 0],
     ['generationInfo', 'GuestInfoNamespaceGenerationInfo', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

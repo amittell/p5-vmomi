@@ -1,9 +1,18 @@
 package VMOMI::ClusterIoFilterInfo;
 use parent 'VMOMI::IoFilterInfo';
 
+our @class_ancestors = ( 
+    'IoFilterInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['opType', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

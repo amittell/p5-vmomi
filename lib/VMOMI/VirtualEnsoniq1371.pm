@@ -1,7 +1,17 @@
 package VMOMI::VirtualEnsoniq1371;
 use parent 'VMOMI::VirtualSoundCard';
 
+our @class_ancestors = ( 
+    'VirtualSoundCard',
+    'VirtualDevice',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

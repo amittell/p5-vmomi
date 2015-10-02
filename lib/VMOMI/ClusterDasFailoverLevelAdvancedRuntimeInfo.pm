@@ -1,6 +1,11 @@
 package VMOMI::ClusterDasFailoverLevelAdvancedRuntimeInfo;
 use parent 'VMOMI::ClusterDasAdvancedRuntimeInfo';
 
+our @class_ancestors = ( 
+    'ClusterDasAdvancedRuntimeInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['slotInfo', 'ClusterDasFailoverLevelAdvancedRuntimeInfoSlotInfo', 0, 1],
     ['totalSlots', undef, 0, 1],
@@ -12,6 +17,10 @@ our @class_members = (
     ['hostSlots', 'ClusterDasFailoverLevelAdvancedRuntimeInfoHostSlots', 1, 0],
     ['vmsRequiringMultipleSlots', 'ClusterDasFailoverLevelAdvancedRuntimeInfoVmSlots', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

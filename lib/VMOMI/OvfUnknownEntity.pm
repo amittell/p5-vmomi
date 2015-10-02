@@ -1,9 +1,20 @@
 package VMOMI::OvfUnknownEntity;
 use parent 'VMOMI::OvfSystemFault';
 
+our @class_ancestors = ( 
+    'OvfSystemFault',
+    'OvfFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['lineNumber', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

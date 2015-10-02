@@ -1,7 +1,17 @@
 package VMOMI::TaskTimeoutEvent;
 use parent 'VMOMI::TaskEvent';
 
+our @class_ancestors = ( 
+    'TaskEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

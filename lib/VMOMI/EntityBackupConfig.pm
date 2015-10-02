@@ -1,6 +1,10 @@
 package VMOMI::EntityBackupConfig;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['entityType', undef, 0, 1],
     ['configBlob', undef, 0, 1],
@@ -9,6 +13,10 @@ our @class_members = (
     ['container', 'ManagedObjectReference', 0, 0],
     ['configVersion', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

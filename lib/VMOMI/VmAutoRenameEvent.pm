@@ -1,10 +1,20 @@
 package VMOMI::VmAutoRenameEvent;
 use parent 'VMOMI::VmEvent';
 
+our @class_ancestors = ( 
+    'VmEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['oldName', undef, 0, 1],
     ['newName', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

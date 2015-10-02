@@ -1,6 +1,14 @@
 package VMOMI::VirtualApp;
 use parent 'VMOMI::ResourcePool';
 
+our @class_ancestors = (
+    'ResourcePool',
+    'ManagedEntity',
+    'ExtensibleManagedObject',
+    'ManagedObject',
+);
+
+
 our @class_members = ( 
     ['childLink', 'VirtualAppLinkInfo', 1, 0],
     ['datastore', 'ManagedObjectReference', 1, 0],
@@ -9,6 +17,10 @@ our @class_members = (
     ['parentVApp', 'ManagedObjectReference', 0, 0],
     ['vAppConfig', 'VAppConfigInfo', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

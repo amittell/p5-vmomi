@@ -1,6 +1,10 @@
 package VMOMI::HostInternetScsiHbaIPProperties;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['mac', undef, 0, 0],
     ['address', undef, 0, 0],
@@ -19,6 +23,10 @@ our @class_members = (
     ['ipv6Enabled', 'boolean', 0, 0],
     ['ipv6properties', 'HostInternetScsiHbaIPv6Properties', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

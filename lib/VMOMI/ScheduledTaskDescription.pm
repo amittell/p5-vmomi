@@ -1,6 +1,10 @@
 package VMOMI::ScheduledTaskDescription;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['action', 'TypeDescription', 1, 1],
     ['schedulerInfo', 'ScheduledTaskDetail', 1, 1],
@@ -8,6 +12,10 @@ our @class_members = (
     ['dayOfWeek', 'ElementDescription', 1, 1],
     ['weekOfMonth', 'ElementDescription', 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

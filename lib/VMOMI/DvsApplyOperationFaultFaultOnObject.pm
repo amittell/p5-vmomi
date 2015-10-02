@@ -1,11 +1,19 @@
 package VMOMI::DvsApplyOperationFaultFaultOnObject;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['objectId', undef, 0, 1],
     ['type', undef, 0, 1],
     ['fault', 'LocalizedMethodFault', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

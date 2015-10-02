@@ -1,6 +1,11 @@
 package VMOMI::EventEx;
 use parent 'VMOMI::Event';
 
+our @class_ancestors = ( 
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['eventTypeId', undef, 0, 1],
     ['severity', undef, 0, 0],
@@ -11,6 +16,10 @@ our @class_members = (
     ['objectName', undef, 0, 0],
     ['fault', 'LocalizedMethodFault', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

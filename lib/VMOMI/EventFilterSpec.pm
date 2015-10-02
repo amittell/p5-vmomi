@@ -1,6 +1,10 @@
 package VMOMI::EventFilterSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['entity', 'EventFilterSpecByEntity', 0, 0],
     ['time', 'EventFilterSpecByTime', 0, 0],
@@ -14,6 +18,10 @@ our @class_members = (
     ['tag', undef, 1, 0],
     ['eventTypeId', undef, 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::HostNetworkInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vswitch', 'HostVirtualSwitch', 1, 0],
     ['proxySwitch', 'HostProxySwitch', 1, 0],
@@ -20,6 +24,10 @@ our @class_members = (
     ['opaqueSwitch', 'HostOpaqueSwitch', 1, 0],
     ['opaqueNetwork', 'HostOpaqueNetworkInfo', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

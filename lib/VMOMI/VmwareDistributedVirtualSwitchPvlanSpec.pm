@@ -1,9 +1,19 @@
 package VMOMI::VmwareDistributedVirtualSwitchPvlanSpec;
 use parent 'VMOMI::VmwareDistributedVirtualSwitchVlanSpec';
 
+our @class_ancestors = ( 
+    'VmwareDistributedVirtualSwitchVlanSpec',
+    'InheritablePolicy',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['pvlanId', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

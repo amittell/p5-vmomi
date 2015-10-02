@@ -1,6 +1,11 @@
 package VMOMI::HostApplyProfile;
 use parent 'VMOMI::ApplyProfile';
 
+our @class_ancestors = ( 
+    'ApplyProfile',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['memory', 'HostMemoryProfile', 0, 0],
     ['storage', 'StorageProfile', 0, 0],
@@ -14,6 +19,10 @@ our @class_members = (
     ['usergroupAccount', 'UserGroupProfile', 1, 0],
     ['authentication', 'AuthenticationProfile', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::ClusterUsageSummary;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['totalCpuCapacityMhz', undef, 0, 1],
     ['totalMemCapacityMB', undef, 0, 1],
@@ -16,6 +20,10 @@ our @class_members = (
     ['poweredOffVmCount', undef, 0, 1],
     ['totalVmCount', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

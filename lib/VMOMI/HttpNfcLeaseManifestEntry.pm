@@ -1,6 +1,10 @@
 package VMOMI::HttpNfcLeaseManifestEntry;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 1],
     ['sha1', undef, 0, 1],
@@ -9,6 +13,10 @@ our @class_members = (
     ['capacity', undef, 0, 0],
     ['populatedSize', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

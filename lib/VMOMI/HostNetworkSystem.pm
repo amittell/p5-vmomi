@@ -1,5 +1,10 @@
 package VMOMI::HostNetworkSystem;
-use parent 'VMOMI::ExtensibeManagedObject';
+use parent 'VMOMI::ExtensibleManagedObject';
+
+our @class_ancestors = (
+    'ExtensibleManagedObject',
+    'ManagedObject',
+);
 
 our @class_members = (
     ['capabilities', 'HostNetCapabilities', 0, 0],
@@ -10,6 +15,10 @@ our @class_members = (
     ['networkInfo', 'HostNetworkInfo', 0, 0],
     ['offloadCapabilities', 'HostNetOffloadCapabilities', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

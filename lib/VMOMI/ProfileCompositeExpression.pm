@@ -1,10 +1,19 @@
 package VMOMI::ProfileCompositeExpression;
 use parent 'VMOMI::ProfileExpression';
 
+our @class_ancestors = ( 
+    'ProfileExpression',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['operator', undef, 0, 1],
     ['expressionName', undef, 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

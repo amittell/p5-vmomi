@@ -1,10 +1,19 @@
 package VMOMI::ProfileEventArgument;
 use parent 'VMOMI::EventArgument';
 
+our @class_ancestors = ( 
+    'EventArgument',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['profile', 'ManagedObjectReference', 0, 1],
     ['name', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

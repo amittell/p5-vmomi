@@ -1,6 +1,10 @@
 package VMOMI::PhysicalNicCdpInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['cdpVersion', undef, 0, 0],
     ['timeout', undef, 0, 0],
@@ -22,6 +26,10 @@ our @class_members = (
     ['mgmtAddr', undef, 0, 0],
     ['location', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

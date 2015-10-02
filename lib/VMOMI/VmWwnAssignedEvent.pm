@@ -1,10 +1,20 @@
 package VMOMI::VmWwnAssignedEvent;
 use parent 'VMOMI::VmEvent';
 
+our @class_ancestors = ( 
+    'VmEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['nodeWwns', undef, 1, 1],
     ['portWwns', undef, 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

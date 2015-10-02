@@ -1,9 +1,19 @@
 package VMOMI::DvpgImportEvent;
 use parent 'VMOMI::DVPortgroupEvent';
 
+our @class_ancestors = ( 
+    'DVPortgroupEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['importType', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

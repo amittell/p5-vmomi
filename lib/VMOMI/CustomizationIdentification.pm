@@ -1,12 +1,20 @@
 package VMOMI::CustomizationIdentification;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['joinWorkgroup', undef, 0, 0],
     ['joinDomain', undef, 0, 0],
     ['domainAdmin', undef, 0, 0],
     ['domainAdminPassword', 'CustomizationPassword', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

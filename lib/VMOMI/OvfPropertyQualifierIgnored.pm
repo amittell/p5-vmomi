@@ -1,9 +1,21 @@
 package VMOMI::OvfPropertyQualifierIgnored;
 use parent 'VMOMI::OvfProperty';
 
+our @class_ancestors = ( 
+    'OvfProperty',
+    'OvfInvalidPackage',
+    'OvfFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['qualifier', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

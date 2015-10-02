@@ -229,15 +229,19 @@ foreach (keys %ComplexTypes) {
 	next if $parent eq 'ComplexType';
 	
 	while (defined $parent) {
-		my $grandparent = $ComplexTypes{$parent};
-		push @ancestors, $grandparent;
-		$parent = $grandparent;
+		my $object = $ComplexTypes{$parent};
+		push @ancestors, $parent;
+		$parent = $object->{'super'};
+		
+		if ($parent eq 'ComplexType') {
+		    $parent = undef;
+		}
 	}
 	$ComplexTypes{$_}->{'ancestors'} = \@ancestors;
 }
 
 foreach (sort keys %ComplexTypes) {
-	my ($class_definition, $class_name, $super_name, @members);
+	my ($class_definition, $class_name, $super_name, @members, @ancestors);
 
 	open FILE, ">" . MODLIB . "/$_.pm" or die "Failed to open " . MODLIB . "/$_.pm";
 	
@@ -248,6 +252,16 @@ foreach (sort keys %ComplexTypes) {
 	$class_definition .= "use parent '" . P5NS . "::$super_name';\n\n";
 
 	@members = @{ $ComplexTypes{$_}->{'members'} };
+	@ancestors = @{ $ComplexTypes{$_}->{'ancestors'} };
+	
+	$class_definition .= "our \@class_ancestors = ( ";
+	if (scalar @ancestors > 0) {
+	    $class_definition .= "\n";
+	    foreach my $ancestor (@ancestors) {
+	        $class_definition .= "    '$ancestor',\n";
+	    }
+	}
+	$class_definition .= ");\n\n";
 	
 	$class_definition .= "our \@class_members = ( ";
 	if (scalar @members > 0) {
@@ -263,12 +277,17 @@ foreach (sort keys %ComplexTypes) {
 			$class_definition .= "    ['$name', $type, $is_array, $is_mandatory],\n";		
 		}
 	}
+	
 	$class_definition .= ");\n\n";
+    $class_definition .= "sub get_class_ancestors {\n";
+	$class_definition .= "    return \@class_ancestors;\n";
+	$class_definition .= "}\n\n";
 	$class_definition .= "sub get_class_members {\n";
 	$class_definition .= "    my \$class = shift;\n";
 	$class_definition .= "    my \@super_members = \$class->SUPER::get_class_members();\n";
 	$class_definition .= "    return (\@super_members, \@class_members);\n";
 	$class_definition .= "}\n\n";
+
 #	$class_definition .= "sub get_member_info {\n";
 #	$class_definition .= "    my (\$class, \$name) = \@_;\n";
 #	$class_definition .= "    return undef unless \$name;\n\n";

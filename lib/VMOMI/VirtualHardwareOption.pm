@@ -1,6 +1,10 @@
 package VMOMI::VirtualHardwareOption;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['hwVersion', undef, 0, 1],
     ['virtualDeviceOption', 'VirtualDeviceOption', 1, 1],
@@ -20,6 +24,10 @@ our @class_members = (
     ['numSupportedWwnNodes', 'IntOption', 0, 0],
     ['resourceConfigOption', 'ResourceConfigOption', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

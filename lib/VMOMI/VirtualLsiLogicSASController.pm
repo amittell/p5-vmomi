@@ -1,7 +1,18 @@
 package VMOMI::VirtualLsiLogicSASController;
 use parent 'VMOMI::VirtualSCSIController';
 
+our @class_ancestors = ( 
+    'VirtualSCSIController',
+    'VirtualController',
+    'VirtualDevice',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

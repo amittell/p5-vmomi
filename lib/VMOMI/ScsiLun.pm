@@ -1,6 +1,11 @@
 package VMOMI::ScsiLun;
 use parent 'VMOMI::HostDevice';
 
+our @class_ancestors = ( 
+    'HostDevice',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 0],
     ['uuid', undef, 0, 1],
@@ -22,6 +27,10 @@ our @class_members = (
     ['vStorageSupport', undef, 0, 0],
     ['protocolEndpoint', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

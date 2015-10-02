@@ -1,11 +1,19 @@
 package VMOMI::ProfilePropertyPath;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['profilePath', undef, 0, 1],
     ['policyId', undef, 0, 0],
     ['parameterId', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

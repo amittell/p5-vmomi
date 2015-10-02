@@ -1,11 +1,20 @@
 package VMOMI::CannotEnableVmcpForCluster;
 use parent 'VMOMI::VimFault';
 
+our @class_ancestors = ( 
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['host', 'ManagedObjectReference', 0, 0],
     ['hostName', undef, 0, 0],
     ['reason', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

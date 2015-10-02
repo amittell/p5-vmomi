@@ -1,11 +1,19 @@
 package VMOMI::UpdateSet;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['version', undef, 0, 1],
     ['filterSet', 'PropertyFilterUpdate', 1, 0],
     ['truncated', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

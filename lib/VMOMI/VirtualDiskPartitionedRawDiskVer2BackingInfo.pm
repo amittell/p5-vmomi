@@ -1,9 +1,20 @@
 package VMOMI::VirtualDiskPartitionedRawDiskVer2BackingInfo;
 use parent 'VMOMI::VirtualDiskRawDiskVer2BackingInfo';
 
+our @class_ancestors = ( 
+    'VirtualDiskRawDiskVer2BackingInfo',
+    'VirtualDeviceDeviceBackingInfo',
+    'VirtualDeviceBackingInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['partition', undef, 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

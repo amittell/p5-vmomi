@@ -1,11 +1,19 @@
 package VMOMI::HostNumaInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['type', undef, 0, 1],
     ['numNodes', undef, 0, 1],
     ['numaNode', 'HostNumaNode', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

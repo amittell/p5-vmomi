@@ -1,6 +1,10 @@
 package VMOMI::ExtensionServerInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['url', undef, 0, 1],
     ['description', 'Description', 0, 1],
@@ -9,6 +13,10 @@ our @class_members = (
     ['adminEmail', undef, 1, 1],
     ['serverThumbprint', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,10 +1,21 @@
 package VMOMI::GuestRegistryValueFault;
 use parent 'VMOMI::GuestRegistryFault';
 
+our @class_ancestors = ( 
+    'GuestRegistryFault',
+    'GuestOperationsFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['keyName', undef, 0, 1],
     ['valueName', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

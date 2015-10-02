@@ -1,10 +1,20 @@
 package VMOMI::DvsMergedEvent;
 use parent 'VMOMI::DvsEvent';
 
+our @class_ancestors = ( 
+    'DvsEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['sourceDvs', 'DvsEventArgument', 0, 1],
     ['destinationDvs', 'DvsEventArgument', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

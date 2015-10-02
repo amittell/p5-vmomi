@@ -1,9 +1,20 @@
 package VMOMI::DestinationVsanDisabled;
 use parent 'VMOMI::CannotMoveVsanEnabledHost';
 
+our @class_ancestors = ( 
+    'CannotMoveVsanEnabledHost',
+    'VsanFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['destinationCluster', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

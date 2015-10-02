@@ -1,11 +1,19 @@
 package VMOMI::FcoeConfigFcoeCapabilities;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['priorityClass', 'boolean', 0, 1],
     ['sourceMacAddress', 'boolean', 0, 1],
     ['vlanRange', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

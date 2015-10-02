@@ -1,6 +1,10 @@
 package VMOMI::StoragePerformanceSummary;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['interval', undef, 0, 1],
     ['percentile', undef, 1, 1],
@@ -11,6 +15,10 @@ our @class_members = (
     ['datastoreWriteIops', undef, 1, 1],
     ['siocActivityDuration', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

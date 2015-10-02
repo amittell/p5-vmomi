@@ -1,6 +1,11 @@
 package VMOMI::DvsIpNetworkRuleQualifier;
 use parent 'VMOMI::DvsNetworkRuleQualifier';
 
+our @class_ancestors = ( 
+    'DvsNetworkRuleQualifier',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['sourceAddress', 'IpAddress', 0, 0],
     ['destinationAddress', 'IpAddress', 0, 0],
@@ -9,6 +14,10 @@ our @class_members = (
     ['destinationIpPort', 'DvsIpPort', 0, 0],
     ['tcpFlags', 'IntExpression', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

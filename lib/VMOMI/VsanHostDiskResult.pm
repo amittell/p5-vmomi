@@ -1,6 +1,10 @@
 package VMOMI::VsanHostDiskResult;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['disk', 'HostScsiDisk', 0, 1],
     ['state', undef, 0, 1],
@@ -8,6 +12,10 @@ our @class_members = (
     ['error', 'LocalizedMethodFault', 0, 0],
     ['degraded', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

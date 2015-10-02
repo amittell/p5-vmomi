@@ -1,6 +1,11 @@
 package VMOMI::VirtualMachineDeviceRuntimeInfoVirtualEthernetCardRuntimeState;
 use parent 'VMOMI::VirtualMachineDeviceRuntimeInfoDeviceRuntimeState';
 
+our @class_ancestors = ( 
+    'VirtualMachineDeviceRuntimeInfoDeviceRuntimeState',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vmDirectPathGen2Active', 'boolean', 0, 1],
     ['vmDirectPathGen2InactiveReasonVm', undef, 1, 0],
@@ -8,6 +13,10 @@ our @class_members = (
     ['vmDirectPathGen2InactiveReasonExtended', undef, 0, 0],
     ['reservationStatus', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,10 +1,20 @@
 package VMOMI::IncompatibleHostForFtSecondary;
 use parent 'VMOMI::VmFaultToleranceIssue';
 
+our @class_ancestors = ( 
+    'VmFaultToleranceIssue',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['host', 'ManagedObjectReference', 0, 1],
     ['error', 'LocalizedMethodFault', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

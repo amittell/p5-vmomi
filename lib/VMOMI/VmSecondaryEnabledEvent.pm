@@ -1,7 +1,17 @@
 package VMOMI::VmSecondaryEnabledEvent;
 use parent 'VMOMI::VmEvent';
 
+our @class_ancestors = ( 
+    'VmEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

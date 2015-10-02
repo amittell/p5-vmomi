@@ -1,9 +1,20 @@
 package VMOMI::CannotAccessVmConfig;
 use parent 'VMOMI::CannotAccessVmComponent';
 
+our @class_ancestors = ( 
+    'CannotAccessVmComponent',
+    'VmConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['reason', 'LocalizedMethodFault', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

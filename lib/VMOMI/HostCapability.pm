@@ -1,6 +1,10 @@
 package VMOMI::HostCapability;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['recursiveResourcePoolsSupported', 'boolean', 0, 1],
     ['cpuMemoryResourceConfigurationSupported', 'boolean', 0, 1],
@@ -86,6 +90,10 @@ our @class_members = (
     ['markAsLocalSupported', 'boolean', 0, 0],
     ['smartCardAuthenticationSupported', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

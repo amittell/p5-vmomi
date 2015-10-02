@@ -1,6 +1,10 @@
 package VMOMI::OvfCreateDescriptorParams;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['ovfFiles', 'OvfFile', 1, 0],
     ['name', undef, 0, 0],
@@ -9,6 +13,10 @@ our @class_members = (
     ['exportOption', undef, 1, 0],
     ['snapshot', 'ManagedObjectReference', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

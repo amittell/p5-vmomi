@@ -1,12 +1,20 @@
 package VMOMI::HostDiskPartitionBlockRange;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['partition', undef, 0, 0],
     ['type', undef, 0, 1],
     ['start', 'HostDiskDimensionsLba', 0, 1],
     ['end', 'HostDiskDimensionsLba', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

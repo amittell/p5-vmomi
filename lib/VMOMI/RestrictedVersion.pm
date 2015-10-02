@@ -1,7 +1,17 @@
 package VMOMI::RestrictedVersion;
 use parent 'VMOMI::SecurityError';
 
+our @class_ancestors = ( 
+    'SecurityError',
+    'RuntimeFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

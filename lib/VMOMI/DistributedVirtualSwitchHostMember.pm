@@ -1,6 +1,10 @@
 package VMOMI::DistributedVirtualSwitchHostMember;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['runtimeState', 'DistributedVirtualSwitchHostMemberRuntimeState', 0, 0],
     ['config', 'DistributedVirtualSwitchHostMemberConfigInfo', 0, 1],
@@ -9,6 +13,10 @@ our @class_members = (
     ['status', undef, 0, 1],
     ['statusDetail', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

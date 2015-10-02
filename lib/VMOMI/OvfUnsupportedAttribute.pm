@@ -1,10 +1,21 @@
 package VMOMI::OvfUnsupportedAttribute;
 use parent 'VMOMI::OvfUnsupportedPackage';
 
+our @class_ancestors = ( 
+    'OvfUnsupportedPackage',
+    'OvfFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['elementName', undef, 0, 1],
     ['attributeName', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

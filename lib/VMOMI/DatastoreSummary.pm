@@ -1,6 +1,10 @@
 package VMOMI::DatastoreSummary;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['datastore', 'ManagedObjectReference', 0, 0],
     ['name', undef, 0, 1],
@@ -13,6 +17,10 @@ our @class_members = (
     ['type', undef, 0, 1],
     ['maintenanceMode', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

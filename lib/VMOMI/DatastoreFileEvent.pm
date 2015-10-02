@@ -1,9 +1,19 @@
 package VMOMI::DatastoreFileEvent;
 use parent 'VMOMI::DatastoreEvent';
 
+our @class_ancestors = ( 
+    'DatastoreEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['targetFile', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

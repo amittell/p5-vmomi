@@ -1,10 +1,23 @@
 package VMOMI::MonthlyByWeekdayTaskScheduler;
 use parent 'VMOMI::MonthlyTaskScheduler';
 
+our @class_ancestors = ( 
+    'MonthlyTaskScheduler',
+    'DailyTaskScheduler',
+    'HourlyTaskScheduler',
+    'RecurrentTaskScheduler',
+    'TaskScheduler',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['offset', 'WeekOfMonth', 0, 1],
     ['weekday', 'DayOfWeek', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

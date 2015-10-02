@@ -1,10 +1,19 @@
 package VMOMI::MethodAction;
 use parent 'VMOMI::Action';
 
+our @class_ancestors = ( 
+    'Action',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['name', undef, 0, 1],
     ['argument', 'MethodActionArgument', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

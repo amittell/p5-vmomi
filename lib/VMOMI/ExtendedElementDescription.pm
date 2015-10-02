@@ -1,10 +1,20 @@
 package VMOMI::ExtendedElementDescription;
 use parent 'VMOMI::ElementDescription';
 
+our @class_ancestors = ( 
+    'ElementDescription',
+    'Description',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['messageCatalogKeyPrefix', undef, 0, 1],
     ['messageArg', 'KeyAnyValue', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

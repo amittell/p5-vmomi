@@ -1,6 +1,10 @@
 package VMOMI::HostFirewallRule;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['port', undef, 0, 1],
     ['endPort', undef, 0, 0],
@@ -8,6 +12,10 @@ our @class_members = (
     ['portType', 'HostFirewallRulePortType', 0, 0],
     ['protocol', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::HostMultipathInfoLogicalUnit;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 1],
     ['id', undef, 0, 1],
@@ -9,6 +13,10 @@ our @class_members = (
     ['policy', 'HostMultipathInfoLogicalUnitPolicy', 0, 1],
     ['storageArrayTypePolicy', 'HostMultipathInfoLogicalUnitStorageArrayTypePolicy', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

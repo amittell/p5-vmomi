@@ -1,7 +1,18 @@
 package VMOMI::PermissionRemovedEvent;
 use parent 'VMOMI::PermissionEvent';
 
+our @class_ancestors = ( 
+    'PermissionEvent',
+    'AuthorizationEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

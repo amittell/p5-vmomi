@@ -1,10 +1,20 @@
 package VMOMI::VmUuidConflictEvent;
 use parent 'VMOMI::VmEvent';
 
+our @class_ancestors = ( 
+    'VmEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['conflictedVm', 'VmEventArgument', 0, 1],
     ['uuid', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

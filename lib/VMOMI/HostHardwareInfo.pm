@@ -1,6 +1,10 @@
 package VMOMI::HostHardwareInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['systemInfo', 'HostSystemInfo', 0, 1],
     ['cpuPowerManagementInfo', 'HostCpuPowerManagementInfo', 0, 0],
@@ -14,6 +18,10 @@ our @class_members = (
     ['biosInfo', 'HostBIOSInfo', 0, 0],
     ['reliableMemoryInfo', 'HostReliableMemoryInfo', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,10 +1,19 @@
 package VMOMI::BoolOption;
 use parent 'VMOMI::OptionType';
 
+our @class_ancestors = ( 
+    'OptionType',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['supported', 'boolean', 0, 1],
     ['defaultValue', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

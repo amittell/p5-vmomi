@@ -1,11 +1,20 @@
 package VMOMI::NamespaceFull;
 use parent 'VMOMI::VimFault';
 
+our @class_ancestors = ( 
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['name', undef, 0, 1],
     ['currentMaxSize', undef, 0, 1],
     ['requiredSize', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

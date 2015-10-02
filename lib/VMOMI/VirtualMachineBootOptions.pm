@@ -1,6 +1,10 @@
 package VMOMI::VirtualMachineBootOptions;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['bootDelay', undef, 0, 0],
     ['enterBIOSSetup', 'boolean', 0, 0],
@@ -9,6 +13,10 @@ our @class_members = (
     ['bootOrder', 'VirtualMachineBootOptionsBootableDevice', 1, 0],
     ['networkBootProtocol', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

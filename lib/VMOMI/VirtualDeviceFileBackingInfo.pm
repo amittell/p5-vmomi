@@ -1,11 +1,20 @@
 package VMOMI::VirtualDeviceFileBackingInfo;
 use parent 'VMOMI::VirtualDeviceBackingInfo';
 
+our @class_ancestors = ( 
+    'VirtualDeviceBackingInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['fileName', undef, 0, 1],
     ['datastore', 'ManagedObjectReference', 0, 0],
     ['backingObjectId', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

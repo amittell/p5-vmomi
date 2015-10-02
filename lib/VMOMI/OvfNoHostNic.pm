@@ -1,7 +1,18 @@
 package VMOMI::OvfNoHostNic;
 use parent 'VMOMI::OvfUnsupportedPackage';
 
+our @class_ancestors = ( 
+    'OvfUnsupportedPackage',
+    'OvfFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

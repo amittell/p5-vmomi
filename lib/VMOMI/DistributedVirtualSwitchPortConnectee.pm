@@ -1,12 +1,20 @@
 package VMOMI::DistributedVirtualSwitchPortConnectee;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['connectedEntity', 'ManagedObjectReference', 0, 0],
     ['nicKey', undef, 0, 0],
     ['type', undef, 0, 0],
     ['addressHint', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

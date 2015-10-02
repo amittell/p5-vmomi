@@ -1,6 +1,10 @@
 package VMOMI::HostVvolVolumeSpecification;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['maxSizeInMB', undef, 0, 1],
     ['volumeName', undef, 0, 1],
@@ -8,6 +12,10 @@ our @class_members = (
     ['storageArray', 'VASAStorageArray', 1, 0],
     ['uuid', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

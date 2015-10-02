@@ -1,6 +1,12 @@
 package VMOMI::VirtualDiskRawDiskMappingVer1BackingInfo;
 use parent 'VMOMI::VirtualDeviceFileBackingInfo';
 
+our @class_ancestors = ( 
+    'VirtualDeviceFileBackingInfo',
+    'VirtualDeviceBackingInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['lunUuid', undef, 0, 0],
     ['deviceName', undef, 0, 0],
@@ -12,6 +18,10 @@ our @class_members = (
     ['parent', 'VirtualDiskRawDiskMappingVer1BackingInfo', 0, 0],
     ['sharing', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

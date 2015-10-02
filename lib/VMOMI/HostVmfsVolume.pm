@@ -1,6 +1,11 @@
 package VMOMI::HostVmfsVolume;
 use parent 'VMOMI::HostFileSystemVolume';
 
+our @class_ancestors = ( 
+    'HostFileSystemVolume',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['blockSizeMb', undef, 0, 1],
     ['maxBlocks', undef, 0, 1],
@@ -13,6 +18,10 @@ our @class_members = (
     ['ssd', 'boolean', 0, 0],
     ['local', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

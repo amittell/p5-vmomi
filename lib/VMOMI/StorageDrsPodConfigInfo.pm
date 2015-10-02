@@ -1,6 +1,10 @@
 package VMOMI::StorageDrsPodConfigInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['enabled', 'boolean', 0, 1],
     ['ioLoadBalanceEnabled', 'boolean', 0, 1],
@@ -13,6 +17,10 @@ our @class_members = (
     ['rule', 'ClusterRuleInfo', 1, 0],
     ['option', 'OptionValue', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,11 +1,20 @@
 package VMOMI::GuestWindowsFileAttributes;
 use parent 'VMOMI::GuestFileAttributes';
 
+our @class_ancestors = ( 
+    'GuestFileAttributes',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['hidden', 'boolean', 0, 0],
     ['readOnly', 'boolean', 0, 0],
     ['createTime', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,10 +1,22 @@
 package VMOMI::DeviceUnsupportedForVmVersion;
 use parent 'VMOMI::InvalidDeviceSpec';
 
+our @class_ancestors = ( 
+    'InvalidDeviceSpec',
+    'InvalidVmConfig',
+    'VmConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['currentVersion', undef, 0, 1],
     ['expectedVersion', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

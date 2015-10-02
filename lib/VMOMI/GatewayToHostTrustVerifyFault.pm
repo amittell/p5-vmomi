@@ -1,10 +1,22 @@
 package VMOMI::GatewayToHostTrustVerifyFault;
 use parent 'VMOMI::GatewayToHostConnectFault';
 
+our @class_ancestors = ( 
+    'GatewayToHostConnectFault',
+    'GatewayConnectFault',
+    'HostConnectFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['verificationToken', undef, 0, 1],
     ['propertiesToVerify', 'KeyValue', 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

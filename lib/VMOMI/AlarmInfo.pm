@@ -1,6 +1,11 @@
 package VMOMI::AlarmInfo;
 use parent 'VMOMI::AlarmSpec';
 
+our @class_ancestors = ( 
+    'AlarmSpec',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 1],
     ['alarm', 'ManagedObjectReference', 0, 1],
@@ -9,6 +14,10 @@ our @class_members = (
     ['lastModifiedUser', undef, 0, 1],
     ['creationEventId', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

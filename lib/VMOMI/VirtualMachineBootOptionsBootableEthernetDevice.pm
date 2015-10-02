@@ -1,9 +1,18 @@
 package VMOMI::VirtualMachineBootOptionsBootableEthernetDevice;
 use parent 'VMOMI::VirtualMachineBootOptionsBootableDevice';
 
+our @class_ancestors = ( 
+    'VirtualMachineBootOptionsBootableDevice',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['deviceKey', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

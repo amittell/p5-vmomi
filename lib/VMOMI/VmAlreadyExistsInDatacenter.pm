@@ -1,11 +1,21 @@
 package VMOMI::VmAlreadyExistsInDatacenter;
 use parent 'VMOMI::InvalidFolder';
 
+our @class_ancestors = ( 
+    'InvalidFolder',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['host', 'ManagedObjectReference', 0, 1],
     ['hostname', undef, 0, 1],
     ['vm', 'ManagedObjectReference', 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

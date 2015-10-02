@@ -1,7 +1,17 @@
 package VMOMI::VAppTaskInProgress;
 use parent 'VMOMI::TaskInProgress';
 
+our @class_ancestors = ( 
+    'TaskInProgress',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

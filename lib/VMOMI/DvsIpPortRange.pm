@@ -1,10 +1,20 @@
 package VMOMI::DvsIpPortRange;
 use parent 'VMOMI::DvsIpPort';
 
+our @class_ancestors = ( 
+    'DvsIpPort',
+    'NegatableExpression',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['startPortNumber', undef, 0, 1],
     ['endPortNumber', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

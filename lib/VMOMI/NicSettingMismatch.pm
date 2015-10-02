@@ -1,10 +1,20 @@
 package VMOMI::NicSettingMismatch;
 use parent 'VMOMI::CustomizationFault';
 
+our @class_ancestors = ( 
+    'CustomizationFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['numberOfNicsInSpec', undef, 0, 1],
     ['numberOfNicsInVM', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

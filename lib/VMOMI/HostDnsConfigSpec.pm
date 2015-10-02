@@ -1,9 +1,18 @@
 package VMOMI::HostDnsConfigSpec;
 use parent 'VMOMI::HostDnsConfig';
 
+our @class_ancestors = ( 
+    'HostDnsConfig',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['virtualNicConnection', 'HostVirtualNicConnection', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

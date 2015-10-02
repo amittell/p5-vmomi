@@ -1,6 +1,10 @@
 package VMOMI::HostInternetScsiHbaAuthenticationCapabilities;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['chapAuthSettable', 'boolean', 0, 1],
     ['krb5AuthSettable', 'boolean', 0, 1],
@@ -10,6 +14,10 @@ our @class_members = (
     ['targetChapSettable', 'boolean', 0, 0],
     ['targetMutualChapSettable', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

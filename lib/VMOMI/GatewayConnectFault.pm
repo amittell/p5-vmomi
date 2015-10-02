@@ -1,12 +1,22 @@
 package VMOMI::GatewayConnectFault;
 use parent 'VMOMI::HostConnectFault';
 
+our @class_ancestors = ( 
+    'HostConnectFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['gatewayType', undef, 0, 1],
     ['gatewayId', undef, 0, 1],
     ['gatewayInfo', undef, 0, 1],
     ['details', 'LocalizableMessage', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

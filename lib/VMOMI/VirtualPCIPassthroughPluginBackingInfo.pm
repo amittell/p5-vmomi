@@ -1,7 +1,16 @@
 package VMOMI::VirtualPCIPassthroughPluginBackingInfo;
 use parent 'VMOMI::VirtualDeviceBackingInfo';
 
+our @class_ancestors = ( 
+    'VirtualDeviceBackingInfo',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

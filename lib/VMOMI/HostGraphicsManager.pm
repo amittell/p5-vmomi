@@ -1,10 +1,19 @@
 package VMOMI::HostGraphicsManager;
-use parent 'VMOMI::ExtensibeManagedObject';
+use parent 'VMOMI::ExtensibleManagedObject';
+
+our @class_ancestors = (
+    'ExtensibleManagedObject',
+    'ManagedObject',
+);
 
 our @class_members = (
     ['graphicsInfo', 'HostGraphicsInfo', 1, 0],
     ['sharedPassthruGpuTypes', undef, 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

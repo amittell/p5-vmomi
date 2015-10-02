@@ -1,10 +1,18 @@
 package VMOMI::ProfileDeferredPolicyOptionParameter;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['inputPath', 'ProfilePropertyPath', 0, 1],
     ['parameter', 'KeyAnyValue', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

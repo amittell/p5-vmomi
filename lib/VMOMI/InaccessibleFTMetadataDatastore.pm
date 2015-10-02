@@ -1,7 +1,18 @@
 package VMOMI::InaccessibleFTMetadataDatastore;
 use parent 'VMOMI::InaccessibleDatastore';
 
+our @class_ancestors = ( 
+    'InaccessibleDatastore',
+    'InvalidDatastore',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

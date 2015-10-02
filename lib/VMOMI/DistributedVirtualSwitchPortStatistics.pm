@@ -1,6 +1,10 @@
 package VMOMI::DistributedVirtualSwitchPortStatistics;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['packetsInMulticast', undef, 0, 1],
     ['packetsOutMulticast', undef, 0, 1],
@@ -19,6 +23,10 @@ our @class_members = (
     ['packetsInException', undef, 0, 1],
     ['packetsOutException', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

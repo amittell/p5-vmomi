@@ -1,12 +1,20 @@
 package VMOMI::VmPodConfigForPlacement;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['storagePod', 'ManagedObjectReference', 0, 1],
     ['disk', 'PodDiskLocator', 1, 0],
     ['vmConfig', 'StorageDrsVmConfigInfo', 0, 0],
     ['interVmRule', 'ClusterRuleInfo', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

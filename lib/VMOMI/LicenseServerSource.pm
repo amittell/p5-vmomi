@@ -1,9 +1,18 @@
 package VMOMI::LicenseServerSource;
 use parent 'VMOMI::LicenseSource';
 
+our @class_ancestors = ( 
+    'LicenseSource',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['licenseServer', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

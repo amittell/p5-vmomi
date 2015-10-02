@@ -1,7 +1,17 @@
 package VMOMI::CannotReconfigureVsanWhenHaEnabled;
 use parent 'VMOMI::VsanFault';
 
+our @class_ancestors = ( 
+    'VsanFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

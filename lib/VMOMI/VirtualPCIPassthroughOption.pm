@@ -1,7 +1,16 @@
 package VMOMI::VirtualPCIPassthroughOption;
 use parent 'VMOMI::VirtualDeviceOption';
 
+our @class_ancestors = ( 
+    'VirtualDeviceOption',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,7 +1,17 @@
 package VMOMI::VirtualSoundBlaster16Option;
 use parent 'VMOMI::VirtualSoundCardOption';
 
+our @class_ancestors = ( 
+    'VirtualSoundCardOption',
+    'VirtualDeviceOption',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

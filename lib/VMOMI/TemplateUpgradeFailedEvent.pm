@@ -1,9 +1,19 @@
 package VMOMI::TemplateUpgradeFailedEvent;
 use parent 'VMOMI::TemplateUpgradeEvent';
 
+our @class_ancestors = ( 
+    'TemplateUpgradeEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['reason', 'LocalizedMethodFault', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

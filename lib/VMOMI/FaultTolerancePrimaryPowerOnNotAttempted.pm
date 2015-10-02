@@ -1,10 +1,20 @@
 package VMOMI::FaultTolerancePrimaryPowerOnNotAttempted;
 use parent 'VMOMI::VmFaultToleranceIssue';
 
+our @class_ancestors = ( 
+    'VmFaultToleranceIssue',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['secondaryVm', 'ManagedObjectReference', 0, 1],
     ['primaryVm', 'ManagedObjectReference', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

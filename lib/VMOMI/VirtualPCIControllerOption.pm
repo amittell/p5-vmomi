@@ -1,6 +1,12 @@
 package VMOMI::VirtualPCIControllerOption;
 use parent 'VMOMI::VirtualControllerOption';
 
+our @class_ancestors = ( 
+    'VirtualControllerOption',
+    'VirtualDeviceOption',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['numSCSIControllers', 'IntOption', 0, 1],
     ['numEthernetCards', 'IntOption', 0, 1],
@@ -14,6 +20,10 @@ our @class_members = (
     ['numParaVirtualSCSIControllers', 'IntOption', 0, 0],
     ['numSATAControllers', 'IntOption', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

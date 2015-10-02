@@ -1,6 +1,10 @@
 package VMOMI::HostListSummaryQuickStats;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['overallCpuUsage', undef, 0, 0],
     ['overallMemoryUsage', undef, 0, 0],
@@ -8,6 +12,10 @@ our @class_members = (
     ['distributedMemoryFairness', undef, 0, 0],
     ['uptime', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

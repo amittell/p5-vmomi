@@ -5,6 +5,8 @@ use constant P5NS => 'VMOMI';
 
 use Scalar::Util qw(weaken);
 
+our @class_ancestors = ( );
+
 our @class_members = ( );
 
 sub AUTOLOAD {
@@ -100,6 +102,10 @@ sub new {
     # Is weaken necessary here?
     weaken $self->{'stub'};
     return bless $self, $class;
+}
+
+sub get_class_ancestors {
+    return @class_ancestors;
 }
 
 sub get_class_members {

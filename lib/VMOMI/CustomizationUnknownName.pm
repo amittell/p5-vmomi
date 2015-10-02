@@ -1,7 +1,16 @@
 package VMOMI::CustomizationUnknownName;
 use parent 'VMOMI::CustomizationName';
 
+our @class_ancestors = ( 
+    'CustomizationName',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

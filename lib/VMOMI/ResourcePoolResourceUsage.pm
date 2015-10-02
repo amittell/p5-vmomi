@@ -1,6 +1,10 @@
 package VMOMI::ResourcePoolResourceUsage;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['reservationUsed', undef, 0, 1],
     ['reservationUsedForVm', undef, 0, 1],
@@ -9,6 +13,10 @@ our @class_members = (
     ['overallUsage', undef, 0, 1],
     ['maxUsage', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

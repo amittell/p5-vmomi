@@ -1,7 +1,16 @@
 package VMOMI::VirtualMachineBootOptionsBootableCdromDevice;
 use parent 'VMOMI::VirtualMachineBootOptionsBootableDevice';
 
+our @class_ancestors = ( 
+    'VirtualMachineBootOptionsBootableDevice',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

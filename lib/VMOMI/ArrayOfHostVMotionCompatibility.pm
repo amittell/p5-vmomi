@@ -1,9 +1,15 @@
 package VMOMI::ArrayOfHostVMotionCompatibility;
 use parent 'VMOMI::ComplexType';
 
+our @class_ancestors = ( );
+
 our @class_members = ( 
     ['HostVMotionCompatibility', 'HostVMotionCompatibility', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

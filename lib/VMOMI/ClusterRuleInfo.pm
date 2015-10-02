@@ -1,6 +1,10 @@
 package VMOMI::ClusterRuleInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 0],
     ['status', 'ManagedEntityStatus', 0, 0],
@@ -11,6 +15,10 @@ our @class_members = (
     ['inCompliance', 'boolean', 0, 0],
     ['ruleUuid', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

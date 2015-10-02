@@ -1,12 +1,20 @@
 package VMOMI::PlacementRankSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['specs', 'PlacementSpec', 1, 1],
     ['clusters', 'ManagedObjectReference', 1, 1],
     ['rules', 'PlacementAffinityRule', 1, 0],
     ['placementRankByVm', 'StorageDrsPlacementRankVmSpec', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

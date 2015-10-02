@@ -1,9 +1,19 @@
 package VMOMI::DasHostIsolatedEvent;
 use parent 'VMOMI::ClusterEvent';
 
+our @class_ancestors = ( 
+    'ClusterEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['isolatedHost', 'HostEventArgument', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

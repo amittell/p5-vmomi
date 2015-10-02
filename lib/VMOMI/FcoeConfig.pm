@@ -1,6 +1,10 @@
 package VMOMI::FcoeConfig;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['priorityClass', undef, 0, 1],
     ['sourceMac', undef, 0, 1],
@@ -8,6 +12,10 @@ our @class_members = (
     ['capabilities', 'FcoeConfigFcoeCapabilities', 0, 1],
     ['fcoeActive', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

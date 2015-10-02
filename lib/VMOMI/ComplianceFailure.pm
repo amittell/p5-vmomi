@@ -1,11 +1,19 @@
 package VMOMI::ComplianceFailure;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['failureType', undef, 0, 1],
     ['message', 'LocalizableMessage', 0, 1],
     ['expressionName', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

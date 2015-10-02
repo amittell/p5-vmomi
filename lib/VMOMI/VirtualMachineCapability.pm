@@ -1,6 +1,10 @@
 package VMOMI::VirtualMachineCapability;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['snapshotOperationsSupported', 'boolean', 0, 1],
     ['multipleSnapshotsSupported', 'boolean', 0, 1],
@@ -40,6 +44,10 @@ our @class_members = (
     ['nestedHVSupported', 'boolean', 0, 0],
     ['vPMCSupported', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::DiagnosticManagerLogDescriptor;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 1],
     ['fileName', undef, 0, 1],
@@ -9,6 +13,10 @@ our @class_members = (
     ['mimeType', undef, 0, 1],
     ['info', 'Description', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,9 +1,18 @@
 package VMOMI::TypeDescription;
 use parent 'VMOMI::Description';
 
+our @class_ancestors = ( 
+    'Description',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

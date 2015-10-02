@@ -1,10 +1,18 @@
 package VMOMI::CustomizationSpecItem;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['info', 'CustomizationSpecInfo', 0, 1],
     ['spec', 'CustomizationSpec', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

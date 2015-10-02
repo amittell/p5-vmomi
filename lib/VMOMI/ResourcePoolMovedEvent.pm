@@ -1,10 +1,20 @@
 package VMOMI::ResourcePoolMovedEvent;
 use parent 'VMOMI::ResourcePoolEvent';
 
+our @class_ancestors = ( 
+    'ResourcePoolEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['oldParent', 'ResourcePoolEventArgument', 0, 1],
     ['newParent', 'ResourcePoolEventArgument', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

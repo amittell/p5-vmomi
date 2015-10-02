@@ -1,9 +1,20 @@
 package VMOMI::VMotionLinkDown;
 use parent 'VMOMI::VMotionInterfaceIssue';
 
+our @class_ancestors = ( 
+    'VMotionInterfaceIssue',
+    'MigrationFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['network', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

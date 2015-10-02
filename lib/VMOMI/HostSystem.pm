@@ -1,6 +1,12 @@
 package VMOMI::HostSystem;
 use parent 'VMOMI::ManagedEntity';
 
+our @class_ancestors = (
+    'ManagedEntity',
+    'ExtensibleManagedObject',
+    'ManagedObject',
+);
+
 our @class_members = ( 
     ['capability', 'HostCapability', 0, 0],
     ['config', 'HostConfigInfo', 0, 0],
@@ -15,6 +21,10 @@ our @class_members = (
     ['systemResources', 'HostSystemResourceInfo', 0, 0],
     ['vm', 'ManagedObjectReference', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

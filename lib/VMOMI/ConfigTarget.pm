@@ -1,6 +1,10 @@
 package VMOMI::ConfigTarget;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['numCpus', undef, 0, 1],
     ['numCpuCores', undef, 0, 1],
@@ -29,6 +33,10 @@ our @class_members = (
     ['vFlashModule', 'VirtualMachineVFlashModuleInfo', 1, 0],
     ['sharedGpuPassthroughTypes', 'VirtualMachinePciSharedGpuPassthroughInfo', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

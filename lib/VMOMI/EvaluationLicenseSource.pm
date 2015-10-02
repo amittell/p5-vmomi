@@ -1,9 +1,18 @@
 package VMOMI::EvaluationLicenseSource;
 use parent 'VMOMI::LicenseSource';
 
+our @class_ancestors = ( 
+    'LicenseSource',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['remainingHours', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

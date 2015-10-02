@@ -1,9 +1,18 @@
 package VMOMI::VirtualEthernetCardDistributedVirtualPortBackingInfo;
 use parent 'VMOMI::VirtualDeviceBackingInfo';
 
+our @class_ancestors = ( 
+    'VirtualDeviceBackingInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['port', 'DistributedVirtualSwitchPortConnection', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

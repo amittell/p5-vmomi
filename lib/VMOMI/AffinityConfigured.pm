@@ -1,9 +1,19 @@
 package VMOMI::AffinityConfigured;
 use parent 'VMOMI::MigrationFault';
 
+our @class_ancestors = ( 
+    'MigrationFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['configuredAffinity', undef, 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

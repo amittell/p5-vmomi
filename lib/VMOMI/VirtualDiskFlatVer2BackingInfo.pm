@@ -1,6 +1,12 @@
 package VMOMI::VirtualDiskFlatVer2BackingInfo;
 use parent 'VMOMI::VirtualDeviceFileBackingInfo';
 
+our @class_ancestors = ( 
+    'VirtualDeviceFileBackingInfo',
+    'VirtualDeviceBackingInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['diskMode', undef, 0, 1],
     ['split', 'boolean', 0, 0],
@@ -17,6 +23,10 @@ our @class_members = (
     ['deltaDiskFormatVariant', undef, 0, 0],
     ['sharing', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

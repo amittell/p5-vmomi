@@ -1,6 +1,10 @@
 package VMOMI::DistributedVirtualSwitchProductSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['name', undef, 0, 0],
     ['vendor', undef, 0, 0],
@@ -10,6 +14,10 @@ our @class_members = (
     ['bundleId', undef, 0, 0],
     ['bundleUrl', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

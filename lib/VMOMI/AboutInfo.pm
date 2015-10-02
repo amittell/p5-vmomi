@@ -1,6 +1,10 @@
 package VMOMI::AboutInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['name', undef, 0, 1],
     ['fullName', undef, 0, 1],
@@ -17,6 +21,10 @@ our @class_members = (
     ['licenseProductName', undef, 0, 0],
     ['licenseProductVersion', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

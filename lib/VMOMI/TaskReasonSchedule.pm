@@ -1,10 +1,19 @@
 package VMOMI::TaskReasonSchedule;
 use parent 'VMOMI::TaskReason';
 
+our @class_ancestors = ( 
+    'TaskReason',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['name', undef, 0, 1],
     ['scheduledTask', 'ManagedObjectReference', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,12 +1,21 @@
 package VMOMI::TraversalSpec;
 use parent 'VMOMI::SelectionSpec';
 
+our @class_ancestors = ( 
+    'SelectionSpec',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['type', undef, 0, 1],
     ['path', undef, 0, 1],
     ['skip', 'boolean', 0, 0],
     ['selectSet', 'SelectionSpec', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

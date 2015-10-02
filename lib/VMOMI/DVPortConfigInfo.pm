@@ -1,6 +1,10 @@
 package VMOMI::DVPortConfigInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['name', undef, 0, 0],
     ['scope', 'ManagedObjectReference', 1, 0],
@@ -8,6 +12,10 @@ our @class_members = (
     ['setting', 'DVPortSetting', 0, 0],
     ['configVersion', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

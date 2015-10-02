@@ -1,6 +1,10 @@
 package VMOMI::LicenseManager;
 use parent 'VMOMI::ManagedObject';
 
+our @class_ancestors = (
+    'ManagedObject',
+);
+
 our @class_members = (
     ['diagnostics', 'LicenseDiagnostics', 0, 0],
     ['evaluation', 'LicenseManagerEvaluationInfo', 0, 1],
@@ -12,6 +16,10 @@ our @class_members = (
     ['sourceAvailable', 'boolean', 0, 1],
 
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

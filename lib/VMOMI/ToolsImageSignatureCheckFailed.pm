@@ -1,7 +1,17 @@
 package VMOMI::ToolsImageSignatureCheckFailed;
 use parent 'VMOMI::VmToolsUpgradeFault';
 
+our @class_ancestors = ( 
+    'VmToolsUpgradeFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,7 +1,16 @@
 package VMOMI::VMwareDVSHealthCheckConfig;
 use parent 'VMOMI::DVSHealthCheckConfig';
 
+our @class_ancestors = ( 
+    'DVSHealthCheckConfig',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,10 +1,18 @@
 package VMOMI::AnswerFileStatusError;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['userInputPath', 'ProfilePropertyPath', 0, 1],
     ['errMsg', 'LocalizableMessage', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

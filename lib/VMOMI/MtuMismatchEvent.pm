@@ -1,7 +1,18 @@
 package VMOMI::MtuMismatchEvent;
 use parent 'VMOMI::DvsHealthStatusChangeEvent';
 
+our @class_ancestors = ( 
+    'DvsHealthStatusChangeEvent',
+    'HostEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

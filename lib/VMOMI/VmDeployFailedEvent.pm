@@ -1,10 +1,20 @@
 package VMOMI::VmDeployFailedEvent;
 use parent 'VMOMI::VmEvent';
 
+our @class_ancestors = ( 
+    'VmEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['destDatastore', 'EntityEventArgument', 0, 1],
     ['reason', 'LocalizedMethodFault', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

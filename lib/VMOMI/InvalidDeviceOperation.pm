@@ -1,10 +1,22 @@
 package VMOMI::InvalidDeviceOperation;
 use parent 'VMOMI::InvalidDeviceSpec';
 
+our @class_ancestors = ( 
+    'InvalidDeviceSpec',
+    'InvalidVmConfig',
+    'VmConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['badOp', 'VirtualDeviceConfigSpecOperation', 0, 0],
     ['badFileOp', 'VirtualDeviceConfigSpecFileOperation', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::NetIpConfigInfoIpAddress;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['ipAddress', undef, 0, 1],
     ['prefixLength', undef, 0, 1],
@@ -8,6 +12,10 @@ our @class_members = (
     ['state', undef, 0, 0],
     ['lifetime', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,9 +1,19 @@
 package VMOMI::NasConfigFault;
 use parent 'VMOMI::HostConfigFault';
 
+our @class_ancestors = ( 
+    'HostConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['name', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

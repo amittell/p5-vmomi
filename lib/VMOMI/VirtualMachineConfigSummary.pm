@@ -1,6 +1,10 @@
 package VMOMI::VirtualMachineConfigSummary;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['name', undef, 0, 1],
     ['template', 'boolean', 0, 1],
@@ -21,6 +25,10 @@ our @class_members = (
     ['ftInfo', 'FaultToleranceConfigInfo', 0, 0],
     ['managedBy', 'ManagedByInfo', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

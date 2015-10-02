@@ -1,9 +1,18 @@
 package VMOMI::AfterStartupTaskScheduler;
 use parent 'VMOMI::TaskScheduler';
 
+our @class_ancestors = ( 
+    'TaskScheduler',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['minute', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,10 +1,19 @@
 package VMOMI::CustomizationFixedIpV6;
 use parent 'VMOMI::CustomizationIpV6Generator';
 
+our @class_ancestors = ( 
+    'CustomizationIpV6Generator',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['ipAddress', undef, 0, 1],
     ['subnetMask', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,11 +1,21 @@
 package VMOMI::MismatchedNetworkPolicies;
 use parent 'VMOMI::MigrationFault';
 
+our @class_ancestors = ( 
+    'MigrationFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['device', undef, 0, 1],
     ['backing', undef, 0, 1],
     ['connected', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,10 +1,21 @@
 package VMOMI::NotEnoughCpus;
 use parent 'VMOMI::VirtualHardwareCompatibilityIssue';
 
+our @class_ancestors = ( 
+    'VirtualHardwareCompatibilityIssue',
+    'VmConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['numCpuDest', undef, 0, 1],
     ['numCpuVm', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

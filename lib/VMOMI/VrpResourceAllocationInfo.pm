@@ -1,9 +1,18 @@
 package VMOMI::VrpResourceAllocationInfo;
 use parent 'VMOMI::ResourceAllocationInfo';
 
+our @class_ancestors = ( 
+    'ResourceAllocationInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['reservationLimit', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,7 +1,17 @@
 package VMOMI::NoPermissionOnAD;
 use parent 'VMOMI::ActiveDirectoryFault';
 
+our @class_ancestors = ( 
+    'ActiveDirectoryFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

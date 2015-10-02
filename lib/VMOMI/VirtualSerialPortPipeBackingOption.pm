@@ -1,10 +1,20 @@
 package VMOMI::VirtualSerialPortPipeBackingOption;
 use parent 'VMOMI::VirtualDevicePipeBackingOption';
 
+our @class_ancestors = ( 
+    'VirtualDevicePipeBackingOption',
+    'VirtualDeviceBackingOption',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['endpoint', 'ChoiceOption', 0, 1],
     ['noRxLoss', 'BoolOption', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

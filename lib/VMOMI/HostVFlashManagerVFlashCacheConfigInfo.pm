@@ -1,11 +1,19 @@
 package VMOMI::HostVFlashManagerVFlashCacheConfigInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vFlashModuleConfigOption', 'HostVFlashManagerVFlashCacheConfigInfoVFlashModuleConfigOption', 1, 0],
     ['defaultVFlashModule', undef, 0, 0],
     ['swapCacheReservationInGB', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::HostNatServiceNameServiceSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['dnsAutoDetect', 'boolean', 0, 1],
     ['dnsPolicy', undef, 0, 1],
@@ -11,6 +15,10 @@ our @class_members = (
     ['nbnsRetries', undef, 0, 1],
     ['nbnsTimeout', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

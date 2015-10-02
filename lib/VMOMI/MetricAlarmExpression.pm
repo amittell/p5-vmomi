@@ -1,6 +1,11 @@
 package VMOMI::MetricAlarmExpression;
 use parent 'VMOMI::AlarmExpression';
 
+our @class_ancestors = ( 
+    'AlarmExpression',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['operator', 'MetricAlarmOperator', 0, 1],
     ['type', undef, 0, 1],
@@ -10,6 +15,10 @@ our @class_members = (
     ['red', undef, 0, 0],
     ['redInterval', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

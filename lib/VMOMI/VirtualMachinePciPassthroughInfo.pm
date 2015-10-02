@@ -1,10 +1,19 @@
 package VMOMI::VirtualMachinePciPassthroughInfo;
 use parent 'VMOMI::VirtualMachineTargetInfo';
 
+our @class_ancestors = ( 
+    'VirtualMachineTargetInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['pciDevice', 'HostPciDevice', 0, 1],
     ['systemId', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

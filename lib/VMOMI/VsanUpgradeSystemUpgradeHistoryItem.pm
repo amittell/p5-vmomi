@@ -1,12 +1,20 @@
 package VMOMI::VsanUpgradeSystemUpgradeHistoryItem;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['timestamp', undef, 0, 1],
     ['host', 'ManagedObjectReference', 0, 0],
     ['message', undef, 0, 1],
     ['task', 'ManagedObjectReference', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

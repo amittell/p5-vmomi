@@ -1,6 +1,10 @@
 package VMOMI::DvsResourceRuntimeInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['capacity', undef, 0, 0],
     ['usage', undef, 0, 0],
@@ -8,6 +12,10 @@ our @class_members = (
     ['allocatedResource', 'DvsVnicAllocatedResource', 1, 0],
     ['vmVnicNetworkResourcePoolRuntime', 'DvsVmVnicNetworkResourcePoolRuntimeInfo', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

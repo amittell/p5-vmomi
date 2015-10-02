@@ -1,9 +1,20 @@
 package VMOMI::UnsupportedGuest;
 use parent 'VMOMI::InvalidVmConfig';
 
+our @class_ancestors = ( 
+    'InvalidVmConfig',
+    'VmConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['unsupportedGuestOS', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

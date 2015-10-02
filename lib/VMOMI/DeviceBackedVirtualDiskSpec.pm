@@ -1,9 +1,18 @@
 package VMOMI::DeviceBackedVirtualDiskSpec;
 use parent 'VMOMI::VirtualDiskSpec';
 
+our @class_ancestors = ( 
+    'VirtualDiskSpec',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['device', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

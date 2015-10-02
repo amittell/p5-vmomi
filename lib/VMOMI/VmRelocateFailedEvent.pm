@@ -1,12 +1,23 @@
 package VMOMI::VmRelocateFailedEvent;
 use parent 'VMOMI::VmRelocateSpecEvent';
 
+our @class_ancestors = ( 
+    'VmRelocateSpecEvent',
+    'VmEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['destHost', 'HostEventArgument', 0, 1],
     ['reason', 'LocalizedMethodFault', 0, 1],
     ['destDatacenter', 'DatacenterEventArgument', 0, 0],
     ['destDatastore', 'DatastoreEventArgument', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

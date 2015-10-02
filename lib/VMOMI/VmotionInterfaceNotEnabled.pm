@@ -1,7 +1,17 @@
 package VMOMI::VmotionInterfaceNotEnabled;
 use parent 'VMOMI::HostPowerOpFailed';
 
+our @class_ancestors = ( 
+    'HostPowerOpFailed',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

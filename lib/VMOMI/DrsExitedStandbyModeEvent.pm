@@ -1,7 +1,18 @@
 package VMOMI::DrsExitedStandbyModeEvent;
 use parent 'VMOMI::ExitedStandbyModeEvent';
 
+our @class_ancestors = ( 
+    'ExitedStandbyModeEvent',
+    'HostEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

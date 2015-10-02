@@ -1,7 +1,18 @@
 package VMOMI::VMotionNotLicensed;
 use parent 'VMOMI::VMotionInterfaceIssue';
 
+our @class_ancestors = ( 
+    'VMotionInterfaceIssue',
+    'MigrationFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

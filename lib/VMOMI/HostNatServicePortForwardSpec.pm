@@ -1,6 +1,10 @@
 package VMOMI::HostNatServicePortForwardSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['type', undef, 0, 1],
     ['name', undef, 0, 1],
@@ -8,6 +12,10 @@ our @class_members = (
     ['guestPort', undef, 0, 1],
     ['guestIpAddress', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

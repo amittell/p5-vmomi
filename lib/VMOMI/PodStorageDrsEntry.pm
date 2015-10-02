@@ -1,12 +1,20 @@
 package VMOMI::PodStorageDrsEntry;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['storageDrsConfig', 'StorageDrsConfigInfo', 0, 1],
     ['recommendation', 'ClusterRecommendation', 1, 0],
     ['drsFault', 'ClusterDrsFaults', 1, 0],
     ['actionHistory', 'ClusterActionHistory', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

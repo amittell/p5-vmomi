@@ -1,9 +1,18 @@
 package VMOMI::ClusterFailoverHostAdmissionControlInfo;
 use parent 'VMOMI::ClusterDasAdmissionControlInfo';
 
+our @class_ancestors = ( 
+    'ClusterDasAdmissionControlInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['hostStatus', 'ClusterFailoverHostAdmissionControlInfoHostStatus', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

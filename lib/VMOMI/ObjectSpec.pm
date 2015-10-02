@@ -1,11 +1,19 @@
 package VMOMI::ObjectSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['obj', 'ManagedObjectReference', 0, 1],
     ['skip', 'boolean', 0, 0],
     ['selectSet', 'SelectionSpec', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

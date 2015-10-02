@@ -1,9 +1,19 @@
 package VMOMI::PatchSuperseded;
 use parent 'VMOMI::PatchNotApplicable';
 
+our @class_ancestors = ( 
+    'PatchNotApplicable',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['supersede', undef, 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

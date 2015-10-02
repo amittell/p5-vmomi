@@ -1,7 +1,16 @@
 package VMOMI::HostLocalAuthenticationInfo;
 use parent 'VMOMI::HostAuthenticationStoreInfo';
 
+our @class_ancestors = ( 
+    'HostAuthenticationStoreInfo',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::HostPlugStoreTopology;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['adapter', 'HostPlugStoreTopologyAdapter', 1, 0],
     ['path', 'HostPlugStoreTopologyPath', 1, 0],
@@ -8,6 +12,10 @@ our @class_members = (
     ['device', 'HostPlugStoreTopologyDevice', 1, 0],
     ['plugin', 'HostPlugStoreTopologyPlugin', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

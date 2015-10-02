@@ -1,6 +1,12 @@
 package VMOMI::VirtualMachine;
 use parent 'VMOMI::ManagedEntity';
 
+our @class_ancestors = (
+    'ManagedEntity',
+    'ExtensibleManagedObject',
+    'ManagedObject',
+);
+
 our @class_members = ( 
     ['capability', 'VirtualMachineCapability', 0, 1],
     ['config', 'VirtualMachineConfigInfo', 0, 0],
@@ -18,6 +24,10 @@ our @class_members = (
     ['storage', 'VirtualMachineStorageInfo', 0, 0],
     ['summary', 'VirtualMachineSummary', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

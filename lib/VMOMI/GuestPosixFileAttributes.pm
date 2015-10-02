@@ -1,11 +1,20 @@
 package VMOMI::GuestPosixFileAttributes;
 use parent 'VMOMI::GuestFileAttributes';
 
+our @class_ancestors = ( 
+    'GuestFileAttributes',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['ownerId', undef, 0, 0],
     ['groupId', undef, 0, 0],
     ['permissions', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

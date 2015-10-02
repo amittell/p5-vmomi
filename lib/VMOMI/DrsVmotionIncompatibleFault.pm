@@ -1,9 +1,20 @@
 package VMOMI::DrsVmotionIncompatibleFault;
 use parent 'VMOMI::VirtualHardwareCompatibilityIssue';
 
+our @class_ancestors = ( 
+    'VirtualHardwareCompatibilityIssue',
+    'VmConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['host', 'ManagedObjectReference', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

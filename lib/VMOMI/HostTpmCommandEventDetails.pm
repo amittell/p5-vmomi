@@ -1,9 +1,18 @@
 package VMOMI::HostTpmCommandEventDetails;
 use parent 'VMOMI::HostTpmEventDetails';
 
+our @class_ancestors = ( 
+    'HostTpmEventDetails',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['commandLine', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

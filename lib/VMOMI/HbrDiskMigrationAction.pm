@@ -1,6 +1,11 @@
 package VMOMI::HbrDiskMigrationAction;
 use parent 'VMOMI::ClusterAction';
 
+our @class_ancestors = ( 
+    'ClusterAction',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['collectionId', undef, 0, 1],
     ['collectionName', undef, 0, 1],
@@ -15,6 +20,10 @@ our @class_members = (
     ['ioLatencySrcBefore', undef, 0, 0],
     ['ioLatencyDstBefore', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

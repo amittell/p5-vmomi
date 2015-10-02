@@ -1,12 +1,20 @@
 package VMOMI::VmDiskFileQueryFilter;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['diskType', undef, 1, 0],
     ['matchHardwareVersion', undef, 1, 0],
     ['controllerType', undef, 1, 0],
     ['thin', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

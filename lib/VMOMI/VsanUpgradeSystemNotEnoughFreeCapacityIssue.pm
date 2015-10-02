@@ -1,9 +1,18 @@
 package VMOMI::VsanUpgradeSystemNotEnoughFreeCapacityIssue;
 use parent 'VMOMI::VsanUpgradeSystemPreflightCheckIssue';
 
+our @class_ancestors = ( 
+    'VsanUpgradeSystemPreflightCheckIssue',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['reducedRedundancyUpgradePossible', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

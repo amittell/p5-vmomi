@@ -1,6 +1,11 @@
 package VMOMI::VirtualEthernetCard;
 use parent 'VMOMI::VirtualDevice';
 
+our @class_ancestors = ( 
+    'VirtualDevice',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['addressType', undef, 0, 0],
     ['macAddress', undef, 0, 0],
@@ -9,6 +14,10 @@ our @class_members = (
     ['externalId', undef, 0, 0],
     ['uptCompatibilityEnabled', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

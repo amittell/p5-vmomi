@@ -1,12 +1,20 @@
 package VMOMI::FileInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['path', undef, 0, 1],
     ['fileSize', undef, 0, 0],
     ['modification', undef, 0, 0],
     ['owner', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

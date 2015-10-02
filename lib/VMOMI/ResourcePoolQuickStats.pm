@@ -1,6 +1,10 @@
 package VMOMI::ResourcePoolQuickStats;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['overallCpuUsage', undef, 0, 0],
     ['overallCpuDemand', undef, 0, 0],
@@ -18,6 +22,10 @@ our @class_members = (
     ['consumedOverheadMemory', undef, 0, 0],
     ['compressedMemory', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,10 +1,20 @@
 package VMOMI::VMwareDVSVlanHealthCheckResult;
 use parent 'VMOMI::HostMemberUplinkHealthCheckResult';
 
+our @class_ancestors = ( 
+    'HostMemberUplinkHealthCheckResult',
+    'HostMemberHealthCheckResult',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['trunkedVlan', 'NumericRange', 1, 0],
     ['untrunkedVlan', 'NumericRange', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

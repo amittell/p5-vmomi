@@ -1,6 +1,13 @@
 package VMOMI::ClusterComputeResource;
 use parent 'VMOMI::ComputeResource';
 
+our @class_ancestors = (
+    'ComputeResource',
+    'ManagedEntity',
+    'ExtensibleManagedObject',
+    'ManagedObject',
+);
+
 our @class_members = ( 
     ['actionHistory', 'ClusterActionHistory', 1, 0],
     ['configuration', 'ClusterConfigInfo', 0, 1],
@@ -9,6 +16,10 @@ our @class_members = (
     ['migrationHistory', 'ClusterDrsMigration', 1, 0],
     ['recommendation', 'ClusterRecommendation', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

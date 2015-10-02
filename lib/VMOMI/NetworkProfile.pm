@@ -1,6 +1,11 @@
 package VMOMI::NetworkProfile;
 use parent 'VMOMI::ApplyProfile';
 
+our @class_ancestors = ( 
+    'ApplyProfile',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vswitch', 'VirtualSwitchProfile', 1, 0],
     ['vmPortGroup', 'VmPortGroupProfile', 1, 0],
@@ -15,6 +20,10 @@ our @class_members = (
     ['dvsHostNic', 'DvsHostVNicProfile', 1, 0],
     ['netStackInstance', 'NetStackInstanceProfile', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

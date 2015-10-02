@@ -1,10 +1,21 @@
 package VMOMI::OvfHardwareExport;
 use parent 'VMOMI::OvfExport';
 
+our @class_ancestors = ( 
+    'OvfExport',
+    'OvfFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['device', 'VirtualDevice', 0, 0],
     ['vmPath', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

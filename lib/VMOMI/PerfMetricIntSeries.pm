@@ -1,9 +1,18 @@
 package VMOMI::PerfMetricIntSeries;
 use parent 'VMOMI::PerfMetricSeries';
 
+our @class_ancestors = ( 
+    'PerfMetricSeries',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['value', undef, 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::ComputeResourceSummary;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['totalCpu', undef, 0, 1],
     ['totalMemory', undef, 0, 1],
@@ -12,6 +16,10 @@ our @class_members = (
     ['numEffectiveHosts', undef, 0, 1],
     ['overallStatus', 'ManagedEntityStatus', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

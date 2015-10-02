@@ -1,9 +1,19 @@
 package VMOMI::GuestProcessNotFound;
 use parent 'VMOMI::GuestOperationsFault';
 
+our @class_ancestors = ( 
+    'GuestOperationsFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['pid', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

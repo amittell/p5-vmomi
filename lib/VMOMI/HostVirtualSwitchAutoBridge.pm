@@ -1,9 +1,18 @@
 package VMOMI::HostVirtualSwitchAutoBridge;
 use parent 'VMOMI::HostVirtualSwitchBridge';
 
+our @class_ancestors = ( 
+    'HostVirtualSwitchBridge',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['excludedNicDevice', undef, 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

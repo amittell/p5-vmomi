@@ -1,9 +1,18 @@
 package VMOMI::VirtualSerialPort;
 use parent 'VMOMI::VirtualDevice';
 
+our @class_ancestors = ( 
+    'VirtualDevice',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['yieldOnPoll', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,9 +1,19 @@
 package VMOMI::VirtualCdromRemotePassthroughBackingOption;
 use parent 'VMOMI::VirtualDeviceRemoteDeviceBackingOption';
 
+our @class_ancestors = ( 
+    'VirtualDeviceRemoteDeviceBackingOption',
+    'VirtualDeviceBackingOption',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['exclusive', 'BoolOption', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

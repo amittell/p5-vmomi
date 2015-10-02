@@ -1,7 +1,17 @@
 package VMOMI::PatchMetadataNotFound;
 use parent 'VMOMI::PatchMetadataInvalid';
 
+our @class_ancestors = ( 
+    'PatchMetadataInvalid',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

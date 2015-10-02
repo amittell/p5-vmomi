@@ -1,12 +1,22 @@
 package VMOMI::RecoveryEvent;
 use parent 'VMOMI::DvsEvent';
 
+our @class_ancestors = ( 
+    'DvsEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['hostName', undef, 0, 1],
     ['portKey', undef, 0, 1],
     ['dvsUuid', undef, 0, 0],
     ['vnic', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

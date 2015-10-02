@@ -1,6 +1,12 @@
 package VMOMI::VirtualDiskSeSparseBackingInfo;
 use parent 'VMOMI::VirtualDeviceFileBackingInfo';
 
+our @class_ancestors = ( 
+    'VirtualDeviceFileBackingInfo',
+    'VirtualDeviceBackingInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['diskMode', undef, 0, 1],
     ['writeThrough', 'boolean', 0, 0],
@@ -12,6 +18,10 @@ our @class_members = (
     ['digestEnabled', 'boolean', 0, 0],
     ['grainSize', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

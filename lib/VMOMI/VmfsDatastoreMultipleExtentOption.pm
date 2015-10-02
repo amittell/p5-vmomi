@@ -1,9 +1,18 @@
 package VMOMI::VmfsDatastoreMultipleExtentOption;
 use parent 'VMOMI::VmfsDatastoreBaseOption';
 
+our @class_ancestors = ( 
+    'VmfsDatastoreBaseOption',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vmfsExtent', 'HostDiskPartitionBlockRange', 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

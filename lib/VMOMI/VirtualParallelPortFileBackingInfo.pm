@@ -1,7 +1,17 @@
 package VMOMI::VirtualParallelPortFileBackingInfo;
 use parent 'VMOMI::VirtualDeviceFileBackingInfo';
 
+our @class_ancestors = ( 
+    'VirtualDeviceFileBackingInfo',
+    'VirtualDeviceBackingInfo',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

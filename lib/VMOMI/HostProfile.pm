@@ -1,9 +1,18 @@
 package VMOMI::HostProfile;
 use parent 'VMOMI::Profile';
 
+our @class_ancestors = (
+    'Profile',
+    'ManagedObject',
+);
+
 our @class_members = ( 
     ['referenceHost', 'ManagedObjectReference', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

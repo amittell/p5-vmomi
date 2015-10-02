@@ -1,6 +1,11 @@
 package VMOMI::VMwareDVSFeatureCapability;
 use parent 'VMOMI::DVSFeatureCapability';
 
+our @class_ancestors = ( 
+    'DVSFeatureCapability',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vspanSupported', 'boolean', 0, 0],
     ['lldpSupported', 'boolean', 0, 0],
@@ -10,6 +15,10 @@ our @class_members = (
     ['vspanCapability', 'VMwareDVSVspanCapability', 0, 0],
     ['lacpCapability', 'VMwareDvsLacpCapability', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

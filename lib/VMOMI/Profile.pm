@@ -1,6 +1,10 @@
 package VMOMI::Profile;
 use parent 'VMOMI::ManagedObject';
 
+our @class_ancestors = (
+    'ManagedObject',
+);
+
 our @class_members = (
     ['complianceStatus', undef, 0, 1],
     ['config', 'rofileConfigInfo', 0, 1],
@@ -10,6 +14,10 @@ our @class_members = (
     ['modifiedTime', undef, 0, 1],
     ['name', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

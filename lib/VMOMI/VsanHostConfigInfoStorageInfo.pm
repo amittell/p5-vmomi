@@ -1,12 +1,20 @@
 package VMOMI::VsanHostConfigInfoStorageInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['autoClaimStorage', 'boolean', 0, 0],
     ['diskMapping', 'VsanHostDiskMapping', 1, 0],
     ['diskMapInfo', 'VsanHostDiskMapInfo', 1, 0],
     ['checksumEnabled', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,7 +1,16 @@
 package VMOMI::FloppyImageFileQuery;
 use parent 'VMOMI::FileQuery';
 
+our @class_ancestors = ( 
+    'FileQuery',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

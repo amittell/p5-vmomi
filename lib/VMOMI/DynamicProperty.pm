@@ -1,10 +1,16 @@
 package VMOMI::DynamicProperty;
 use parent 'VMOMI::ComplexType';
 
+our @class_ancestors = ( );
+
 our @class_members = ( 
     ['name', undef, 0, 1],
     ['val', 'anyType', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

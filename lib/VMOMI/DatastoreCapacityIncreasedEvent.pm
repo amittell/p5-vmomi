@@ -1,10 +1,20 @@
 package VMOMI::DatastoreCapacityIncreasedEvent;
 use parent 'VMOMI::DatastoreEvent';
 
+our @class_ancestors = ( 
+    'DatastoreEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['oldCapacity', undef, 0, 1],
     ['newCapacity', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

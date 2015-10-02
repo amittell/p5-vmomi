@@ -1,9 +1,18 @@
 package VMOMI::AndAlarmExpression;
 use parent 'VMOMI::AlarmExpression';
 
+our @class_ancestors = ( 
+    'AlarmExpression',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['expression', 'AlarmExpression', 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

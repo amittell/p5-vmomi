@@ -1,11 +1,21 @@
 package VMOMI::VmMacChangedEvent;
 use parent 'VMOMI::VmEvent';
 
+our @class_ancestors = ( 
+    'VmEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['adapter', undef, 0, 1],
     ['oldMac', undef, 0, 1],
     ['newMac', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::ResourceConfigSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['entity', 'ManagedObjectReference', 0, 0],
     ['changeVersion', undef, 0, 0],
@@ -8,6 +12,10 @@ our @class_members = (
     ['cpuAllocation', 'ResourceAllocationInfo', 0, 1],
     ['memoryAllocation', 'ResourceAllocationInfo', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

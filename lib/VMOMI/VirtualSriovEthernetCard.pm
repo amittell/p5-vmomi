@@ -1,10 +1,20 @@
 package VMOMI::VirtualSriovEthernetCard;
 use parent 'VMOMI::VirtualEthernetCard';
 
+our @class_ancestors = ( 
+    'VirtualEthernetCard',
+    'VirtualDevice',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['allowGuestOSMtuChange', 'boolean', 0, 0],
     ['sriovBacking', 'VirtualSriovEthernetCardSriovBackingInfo', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

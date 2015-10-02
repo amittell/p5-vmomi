@@ -1,6 +1,10 @@
 package VMOMI::VirtualMachineFileInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vmPathName', undef, 0, 0],
     ['snapshotDirectory', undef, 0, 0],
@@ -8,6 +12,10 @@ our @class_members = (
     ['logDirectory', undef, 0, 0],
     ['ftMetadataDirectory', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

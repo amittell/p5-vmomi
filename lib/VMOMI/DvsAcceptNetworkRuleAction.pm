@@ -1,7 +1,16 @@
 package VMOMI::DvsAcceptNetworkRuleAction;
 use parent 'VMOMI::DvsNetworkRuleAction';
 
+our @class_ancestors = ( 
+    'DvsNetworkRuleAction',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

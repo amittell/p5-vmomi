@@ -1,7 +1,19 @@
 package VMOMI::OvfMissingAttribute;
 use parent 'VMOMI::OvfAttribute';
 
+our @class_ancestors = ( 
+    'OvfAttribute',
+    'OvfInvalidPackage',
+    'OvfFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

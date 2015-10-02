@@ -1,6 +1,11 @@
 package VMOMI::ClusterConfigInfoEx;
 use parent 'VMOMI::ComputeResourceConfigInfo';
 
+our @class_ancestors = ( 
+    'ComputeResourceConfigInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['dasConfig', 'ClusterDasConfigInfo', 0, 1],
     ['dasVmConfig', 'ClusterDasVmConfigInfo', 1, 0],
@@ -13,6 +18,10 @@ our @class_members = (
     ['vsanHostConfig', 'VsanHostConfigInfo', 1, 0],
     ['group', 'ClusterGroupInfo', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,10 +1,18 @@
 package VMOMI::ImportSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['entityConfig', 'VAppEntityConfigInfo', 0, 0],
     ['instantiationOst', 'OvfConsumerOstNode', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::OvfFileItem;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['deviceId', undef, 0, 1],
     ['path', undef, 0, 1],
@@ -10,6 +14,10 @@ our @class_members = (
     ['cimType', undef, 0, 1],
     ['create', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

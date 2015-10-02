@@ -1,6 +1,10 @@
 package VMOMI::OvfValidateHostResult;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['downloadSize', undef, 0, 0],
     ['flatDeploymentSize', undef, 0, 0],
@@ -9,6 +13,10 @@ our @class_members = (
     ['warning', 'LocalizedMethodFault', 1, 0],
     ['supportedDiskProvisioning', undef, 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

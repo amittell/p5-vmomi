@@ -1,6 +1,10 @@
 package VMOMI::ReplicationVmProgressInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['progress', undef, 0, 1],
     ['bytesTransferred', undef, 0, 1],
@@ -8,6 +12,10 @@ our @class_members = (
     ['checksumTotalBytes', undef, 0, 0],
     ['checksumComparedBytes', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

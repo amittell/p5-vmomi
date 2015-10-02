@@ -1,11 +1,20 @@
 package VMOMI::DvsProfile;
 use parent 'VMOMI::ApplyProfile';
 
+our @class_ancestors = ( 
+    'ApplyProfile',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 1],
     ['name', undef, 0, 1],
     ['uplink', 'PnicUplinkProfile', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

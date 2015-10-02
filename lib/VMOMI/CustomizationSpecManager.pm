@@ -1,10 +1,18 @@
 package VMOMI::CustomizationSpecManager;
 use parent 'VMOMI::ManagedObject';
 
+our @class_ancestors = (
+    'ManagedObject',
+);
+
 our @class_members = (
     ['encryptionKey', undef, 1, 0],
     ['info', 'CustomizationSpecInfo', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,11 @@
 package VMOMI::VmDiskFileInfo;
 use parent 'VMOMI::FileInfo';
 
+our @class_ancestors = ( 
+    'FileInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['diskType', undef, 0, 0],
     ['capacityKb', undef, 0, 0],
@@ -9,6 +14,10 @@ our @class_members = (
     ['diskExtents', undef, 1, 0],
     ['thin', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

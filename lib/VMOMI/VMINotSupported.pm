@@ -1,7 +1,19 @@
 package VMOMI::VMINotSupported;
 use parent 'VMOMI::DeviceNotSupported';
 
+our @class_ancestors = ( 
+    'DeviceNotSupported',
+    'VirtualHardwareCompatibilityIssue',
+    'VmConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

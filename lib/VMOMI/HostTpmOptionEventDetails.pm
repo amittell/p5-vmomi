@@ -1,10 +1,19 @@
 package VMOMI::HostTpmOptionEventDetails;
 use parent 'VMOMI::HostTpmEventDetails';
 
+our @class_ancestors = ( 
+    'HostTpmEventDetails',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['optionsFileName', undef, 0, 1],
     ['bootOptions', undef, 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

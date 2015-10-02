@@ -1,12 +1,20 @@
 package VMOMI::HostIpmiInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['bmcIpAddress', undef, 0, 0],
     ['bmcMacAddress', undef, 0, 0],
     ['login', undef, 0, 0],
     ['password', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

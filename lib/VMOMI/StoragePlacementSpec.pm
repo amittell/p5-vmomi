@@ -1,6 +1,10 @@
 package VMOMI::StoragePlacementSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['type', undef, 0, 1],
     ['priority', 'VirtualMachineMovePriority', 0, 0],
@@ -16,6 +20,10 @@ our @class_members = (
     ['disallowPrerequisiteMoves', 'boolean', 0, 0],
     ['resourceLeaseDurationSec', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

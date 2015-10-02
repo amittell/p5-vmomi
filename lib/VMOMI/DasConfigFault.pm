@@ -1,11 +1,20 @@
 package VMOMI::DasConfigFault;
 use parent 'VMOMI::VimFault';
 
+our @class_ancestors = ( 
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['reason', undef, 0, 0],
     ['output', undef, 0, 0],
     ['event', 'Event', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

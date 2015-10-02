@@ -1,10 +1,18 @@
 package VMOMI::HttpNfcLeaseDatastoreLeaseInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['datastoreKey', undef, 0, 1],
     ['hosts', 'HttpNfcLeaseHostInfo', 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

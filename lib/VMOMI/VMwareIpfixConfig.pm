@@ -1,6 +1,10 @@
 package VMOMI::VMwareIpfixConfig;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['collectorIpAddress', undef, 0, 0],
     ['collectorPort', undef, 0, 0],
@@ -10,6 +14,10 @@ our @class_members = (
     ['samplingRate', undef, 0, 1],
     ['internalFlowsOnly', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

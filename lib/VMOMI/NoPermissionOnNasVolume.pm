@@ -1,9 +1,20 @@
 package VMOMI::NoPermissionOnNasVolume;
 use parent 'VMOMI::NasConfigFault';
 
+our @class_ancestors = ( 
+    'NasConfigFault',
+    'HostConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['userName', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

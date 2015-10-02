@@ -1,6 +1,11 @@
 package VMOMI::VMwareDVSPortSetting;
 use parent 'VMOMI::DVPortSetting';
 
+our @class_ancestors = ( 
+    'DVPortSetting',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vlan', 'VmwareDistributedVirtualSwitchVlanSpec', 0, 0],
     ['qosTag', 'IntPolicy', 0, 0],
@@ -10,6 +15,10 @@ our @class_members = (
     ['txUplink', 'BoolPolicy', 0, 0],
     ['lacpPolicy', 'VMwareUplinkLacpPolicy', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

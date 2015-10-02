@@ -1,10 +1,19 @@
 package VMOMI::DVPortgroupSelection;
 use parent 'VMOMI::SelectionSet';
 
+our @class_ancestors = ( 
+    'SelectionSet',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['dvsUuid', undef, 0, 1],
     ['portgroupKey', undef, 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

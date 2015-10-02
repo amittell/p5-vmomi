@@ -1,10 +1,19 @@
 package VMOMI::CannotMoveFaultToleranceVm;
 use parent 'VMOMI::VimFault';
 
+our @class_ancestors = ( 
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['moveType', undef, 0, 1],
     ['vmName', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

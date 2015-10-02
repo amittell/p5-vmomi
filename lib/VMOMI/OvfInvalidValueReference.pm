@@ -1,7 +1,20 @@
 package VMOMI::OvfInvalidValueReference;
 use parent 'VMOMI::OvfInvalidValue';
 
+our @class_ancestors = ( 
+    'OvfInvalidValue',
+    'OvfAttribute',
+    'OvfInvalidPackage',
+    'OvfFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,9 +1,19 @@
 package VMOMI::ProfileReferenceHostChangedEvent;
 use parent 'VMOMI::ProfileEvent';
 
+our @class_ancestors = ( 
+    'ProfileEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['referenceHost', 'ManagedObjectReference', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

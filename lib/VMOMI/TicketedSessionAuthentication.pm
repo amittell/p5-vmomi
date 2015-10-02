@@ -1,9 +1,18 @@
 package VMOMI::TicketedSessionAuthentication;
 use parent 'VMOMI::GuestAuthentication';
 
+our @class_ancestors = ( 
+    'GuestAuthentication',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['ticket', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

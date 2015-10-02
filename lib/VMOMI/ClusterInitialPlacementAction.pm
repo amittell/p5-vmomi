@@ -1,10 +1,19 @@
 package VMOMI::ClusterInitialPlacementAction;
 use parent 'VMOMI::ClusterAction';
 
+our @class_ancestors = ( 
+    'ClusterAction',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['targetHost', 'ManagedObjectReference', 0, 1],
     ['pool', 'ManagedObjectReference', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

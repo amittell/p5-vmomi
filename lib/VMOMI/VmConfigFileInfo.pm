@@ -1,9 +1,18 @@
 package VMOMI::VmConfigFileInfo;
 use parent 'VMOMI::FileInfo';
 
+our @class_ancestors = ( 
+    'FileInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['configVersion', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

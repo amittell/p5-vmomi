@@ -1,11 +1,20 @@
 package VMOMI::HostHasComponentFailure;
 use parent 'VMOMI::VimFault';
 
+our @class_ancestors = ( 
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['hostName', undef, 0, 1],
     ['componentType', undef, 0, 1],
     ['componentName', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

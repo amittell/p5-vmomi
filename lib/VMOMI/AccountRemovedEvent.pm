@@ -1,10 +1,20 @@
 package VMOMI::AccountRemovedEvent;
 use parent 'VMOMI::HostEvent';
 
+our @class_ancestors = ( 
+    'HostEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['account', undef, 0, 1],
     ['group', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

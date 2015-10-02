@@ -1,11 +1,19 @@
 package VMOMI::HostVFlashResourceConfigurationResult;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['devicePath', undef, 1, 0],
     ['vffs', 'HostVffsVolume', 0, 0],
     ['diskConfigurationResult', 'HostDiskConfigurationResult', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

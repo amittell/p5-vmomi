@@ -1,6 +1,10 @@
 package VMOMI::GuestOperationsManager;
 use parent 'VMOMI::ManagedObject';
 
+our @class_ancestors = (
+    'ManagedObject',
+);
+
 our @class_members = (
     ['aliasManager', 'ManagedObjectReference', 0, 0],
     ['authManager', 'ManagedObjectReference', 0, 0],
@@ -8,6 +12,10 @@ our @class_members = (
     ['guestWindowsRegistryManager', 'ManagedObjectReference', 0, 0],
     ['processManager', 'ManagedObjectReference', 0, 0],   
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

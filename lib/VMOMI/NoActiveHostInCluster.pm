@@ -1,9 +1,19 @@
 package VMOMI::NoActiveHostInCluster;
 use parent 'VMOMI::InvalidState';
 
+our @class_ancestors = ( 
+    'InvalidState',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['computeResource', 'ManagedObjectReference', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

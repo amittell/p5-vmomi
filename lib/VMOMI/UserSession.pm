@@ -1,6 +1,10 @@
 package VMOMI::UserSession;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 1],
     ['userName', undef, 0, 1],
@@ -14,6 +18,10 @@ our @class_members = (
     ['userAgent', undef, 0, 0],
     ['callCount', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

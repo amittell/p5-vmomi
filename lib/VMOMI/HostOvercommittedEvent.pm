@@ -1,7 +1,18 @@
 package VMOMI::HostOvercommittedEvent;
 use parent 'VMOMI::ClusterOvercommittedEvent';
 
+our @class_ancestors = ( 
+    'ClusterOvercommittedEvent',
+    'ClusterEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

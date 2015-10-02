@@ -1,9 +1,19 @@
 package VMOMI::IscsiFaultPnicInUse;
 use parent 'VMOMI::IscsiFault';
 
+our @class_ancestors = ( 
+    'IscsiFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['pnicDevice', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

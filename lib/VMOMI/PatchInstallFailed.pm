@@ -1,9 +1,20 @@
 package VMOMI::PatchInstallFailed;
 use parent 'VMOMI::PlatformConfigFault';
 
+our @class_ancestors = ( 
+    'PlatformConfigFault',
+    'HostConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['rolledBack', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

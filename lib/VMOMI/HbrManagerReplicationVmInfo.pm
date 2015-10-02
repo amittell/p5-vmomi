@@ -1,12 +1,20 @@
 package VMOMI::HbrManagerReplicationVmInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['state', undef, 0, 1],
     ['progressInfo', 'ReplicationVmProgressInfo', 0, 0],
     ['imageId', undef, 0, 0],
     ['lastError', 'LocalizedMethodFault', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

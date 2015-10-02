@@ -1,9 +1,19 @@
 package VMOMI::SingleIp;
 use parent 'VMOMI::IpAddress';
 
+our @class_ancestors = ( 
+    'IpAddress',
+    'NegatableExpression',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['address', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

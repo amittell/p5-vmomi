@@ -1,6 +1,14 @@
 package VMOMI::CpuIncompatible1ECX;
 use parent 'VMOMI::CpuIncompatible';
 
+our @class_ancestors = ( 
+    'CpuIncompatible',
+    'VirtualHardwareCompatibilityIssue',
+    'VmConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['sse3', 'boolean', 0, 1],
     ['pclmulqdq', 'boolean', 0, 0],
@@ -11,6 +19,10 @@ our @class_members = (
     ['other', 'boolean', 0, 1],
     ['otherOnly', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

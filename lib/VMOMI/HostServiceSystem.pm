@@ -1,9 +1,18 @@
 package VMOMI::HostServiceSystem;
-use parent 'VMOMI::ExtensibeManagedObject';
+use parent 'VMOMI::ExtensibleManagedObject';
+
+our @class_ancestors = (
+    'ExtensibleManagedObject',
+    'ManagedObject',
+);
 
 our @class_members = (
     ['serviceInfo', 'HostServiceInfo', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,9 +1,19 @@
 package VMOMI::VirtualPCIPassthroughVmiopBackingInfo;
 use parent 'VMOMI::VirtualPCIPassthroughPluginBackingInfo';
 
+our @class_ancestors = ( 
+    'VirtualPCIPassthroughPluginBackingInfo',
+    'VirtualDeviceBackingInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vgpu', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

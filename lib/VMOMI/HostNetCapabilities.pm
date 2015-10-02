@@ -1,6 +1,10 @@
 package VMOMI::HostNetCapabilities;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['canSetPhysicalNicLinkSpeed', 'boolean', 0, 1],
     ['supportsNicTeaming', 'boolean', 0, 1],
@@ -16,6 +20,10 @@ our @class_members = (
     ['dhcpOnVnicSupported', 'boolean', 0, 1],
     ['ipV6Supported', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

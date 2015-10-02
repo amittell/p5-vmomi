@@ -1,7 +1,17 @@
 package VMOMI::ProfileDissociatedEvent;
 use parent 'VMOMI::ProfileEvent';
 
+our @class_ancestors = ( 
+    'ProfileEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

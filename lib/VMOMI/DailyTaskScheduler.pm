@@ -1,9 +1,20 @@
 package VMOMI::DailyTaskScheduler;
 use parent 'VMOMI::HourlyTaskScheduler';
 
+our @class_ancestors = ( 
+    'HourlyTaskScheduler',
+    'RecurrentTaskScheduler',
+    'TaskScheduler',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['hour', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

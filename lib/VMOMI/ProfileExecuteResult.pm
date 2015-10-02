@@ -1,6 +1,10 @@
 package VMOMI::ProfileExecuteResult;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['status', undef, 0, 1],
     ['configSpec', 'HostConfigSpec', 0, 0],
@@ -8,6 +12,10 @@ our @class_members = (
     ['requireInput', 'ProfileDeferredPolicyOptionParameter', 1, 0],
     ['error', 'ProfileExecuteError', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

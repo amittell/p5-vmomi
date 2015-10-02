@@ -1,10 +1,19 @@
 package VMOMI::WinNetBIOSConfigInfo;
 use parent 'VMOMI::NetBIOSConfigInfo';
 
+our @class_ancestors = ( 
+    'NetBIOSConfigInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['primaryWINS', undef, 0, 1],
     ['secondaryWINS', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

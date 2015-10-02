@@ -1,6 +1,10 @@
 package VMOMI::HostDiskPartitionAttributes;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['partition', undef, 0, 1],
     ['startSector', undef, 0, 1],
@@ -11,6 +15,10 @@ our @class_members = (
     ['attributes', undef, 0, 1],
     ['partitionAlignment', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

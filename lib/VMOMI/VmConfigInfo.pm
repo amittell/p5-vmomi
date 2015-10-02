@@ -1,6 +1,10 @@
 package VMOMI::VmConfigInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['product', 'VAppProductInfo', 1, 0],
     ['property', 'VAppPropertyInfo', 1, 0],
@@ -11,6 +15,10 @@ our @class_members = (
     ['installBootRequired', 'boolean', 0, 1],
     ['installBootStopDelay', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

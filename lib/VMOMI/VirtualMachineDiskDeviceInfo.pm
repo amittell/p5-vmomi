@@ -1,10 +1,19 @@
 package VMOMI::VirtualMachineDiskDeviceInfo;
 use parent 'VMOMI::VirtualMachineTargetInfo';
 
+our @class_ancestors = ( 
+    'VirtualMachineTargetInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['capacity', undef, 0, 0],
     ['vm', 'ManagedObjectReference', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,12 +1,20 @@
 package VMOMI::VAppIPAssignmentInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['supportedAllocationScheme', undef, 1, 0],
     ['ipAllocationPolicy', undef, 0, 0],
     ['supportedIpProtocol', undef, 1, 0],
     ['ipProtocol', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

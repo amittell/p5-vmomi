@@ -1,6 +1,12 @@
 package VMOMI::Datacenter;
 use parent 'VMOMI::ManagedEntity';
 
+our @class_ancestors = (
+    'ManagedEntity',
+    'ExtensibleManagedObject',
+    'ManagedObject',
+);
+
 our @class_members = ( 
     ['configuration', 'DatacenterConfigInfo', 0, 1],
     ['datastore', 'ManagedObjectReference', 1, 0],
@@ -10,6 +16,10 @@ our @class_members = (
     ['networkFolder', 'ManagedObjectReference ', 0, 1],
     ['vmFolder', 'ManagedObjectReference ', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,12 +1,20 @@
 package VMOMI::HostVmfsSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['extent', 'HostScsiDiskPartition', 0, 1],
     ['blockSizeMb', undef, 0, 0],
     ['majorVersion', undef, 0, 1],
     ['volumeName', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

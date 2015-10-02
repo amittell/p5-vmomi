@@ -1,10 +1,18 @@
 package VMOMI::HostAuthenticationManager;
 use parent 'VMOMI::ManagedObject';
 
+our @class_ancestors = (
+    'ManagedObject',
+);
+
 our @class_members = (
     ['info', 'HostAuthenticationManagerInfo', 0, 1],
     ['supportedStore', 'ManagedObjectReference', 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

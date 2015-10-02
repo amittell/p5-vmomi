@@ -1,9 +1,18 @@
 package VMOMI::LocalDatastoreInfo;
 use parent 'VMOMI::DatastoreInfo';
 
+our @class_ancestors = ( 
+    'DatastoreInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['path', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

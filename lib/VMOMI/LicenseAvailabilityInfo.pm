@@ -1,11 +1,19 @@
 package VMOMI::LicenseAvailabilityInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['feature', 'LicenseFeatureInfo', 0, 1],
     ['total', undef, 0, 1],
     ['available', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

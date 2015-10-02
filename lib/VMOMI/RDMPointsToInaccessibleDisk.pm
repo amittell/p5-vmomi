@@ -1,7 +1,20 @@
 package VMOMI::RDMPointsToInaccessibleDisk;
 use parent 'VMOMI::CannotAccessVmDisk';
 
+our @class_ancestors = ( 
+    'CannotAccessVmDisk',
+    'CannotAccessVmDevice',
+    'CannotAccessVmComponent',
+    'VmConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

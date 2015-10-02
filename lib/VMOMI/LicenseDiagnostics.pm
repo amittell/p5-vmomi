@@ -1,6 +1,10 @@
 package VMOMI::LicenseDiagnostics;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['sourceLastChanged', undef, 0, 1],
     ['sourceLost', undef, 0, 1],
@@ -12,6 +16,10 @@ our @class_members = (
     ['lastStatusUpdate', undef, 0, 1],
     ['opFailureMessage', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,9 +1,19 @@
 package VMOMI::SecondaryVmNotRegistered;
 use parent 'VMOMI::VmFaultToleranceIssue';
 
+our @class_ancestors = ( 
+    'VmFaultToleranceIssue',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['instanceUuid', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

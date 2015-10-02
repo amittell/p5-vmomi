@@ -1,9 +1,18 @@
 package VMOMI::DistributedVirtualSwitchManagerHostDvsMembershipFilter;
 use parent 'VMOMI::DistributedVirtualSwitchManagerHostDvsFilterSpec';
 
+our @class_ancestors = ( 
+    'DistributedVirtualSwitchManagerHostDvsFilterSpec',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['distributedVirtualSwitch', 'ManagedObjectReference', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

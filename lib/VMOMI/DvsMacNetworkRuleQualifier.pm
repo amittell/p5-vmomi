@@ -1,12 +1,21 @@
 package VMOMI::DvsMacNetworkRuleQualifier;
 use parent 'VMOMI::DvsNetworkRuleQualifier';
 
+our @class_ancestors = ( 
+    'DvsNetworkRuleQualifier',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['sourceAddress', 'MacAddress', 0, 0],
     ['destinationAddress', 'MacAddress', 0, 0],
     ['protocol', 'IntExpression', 0, 0],
     ['vlanId', 'IntExpression', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

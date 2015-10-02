@@ -1,6 +1,11 @@
 package VMOMI::ManagedEntity;
 use parent 'VMOMI::ExtensibleManagedObject';
 
+our @class_ancestors = (
+    'ExtensibleManagedObject',
+    'ManagedObject',
+);
+
 our @class_members = ( 
     ['parent', 'ManagedEntity', 0, 0],
     ['customValue', 'CustomFieldValue', 1, 0],
@@ -17,6 +22,10 @@ our @class_members = (
     ['alarmActionsEnabled', undef, 0, 1],
     ['tag', 'Tag', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,9 +1,18 @@
 package VMOMI::HostTpmDigestInfo;
 use parent 'VMOMI::HostDigestInfo';
 
+our @class_ancestors = ( 
+    'HostDigestInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['pcrNumber', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

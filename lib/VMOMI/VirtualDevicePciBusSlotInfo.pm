@@ -1,9 +1,18 @@
 package VMOMI::VirtualDevicePciBusSlotInfo;
 use parent 'VMOMI::VirtualDeviceBusSlotInfo';
 
+our @class_ancestors = ( 
+    'VirtualDeviceBusSlotInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['pciSlotNumber', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

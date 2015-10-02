@@ -1,7 +1,17 @@
 package VMOMI::VirtualVmxnetOption;
 use parent 'VMOMI::VirtualEthernetCardOption';
 
+our @class_ancestors = ( 
+    'VirtualEthernetCardOption',
+    'VirtualDeviceOption',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

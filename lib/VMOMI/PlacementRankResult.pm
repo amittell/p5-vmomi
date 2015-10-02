@@ -1,6 +1,10 @@
 package VMOMI::PlacementRankResult;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 1],
     ['candidate', 'ManagedObjectReference', 0, 1],
@@ -10,6 +14,10 @@ our @class_members = (
     ['utilization', undef, 0, 1],
     ['faults', 'LocalizedMethodFault', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

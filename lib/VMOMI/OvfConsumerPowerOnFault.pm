@@ -1,11 +1,21 @@
 package VMOMI::OvfConsumerPowerOnFault;
 use parent 'VMOMI::InvalidState';
 
+our @class_ancestors = ( 
+    'InvalidState',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['extensionKey', undef, 0, 1],
     ['extensionName', undef, 0, 1],
     ['description', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

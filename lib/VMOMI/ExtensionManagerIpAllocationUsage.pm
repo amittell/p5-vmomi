@@ -1,10 +1,18 @@
 package VMOMI::ExtensionManagerIpAllocationUsage;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['extensionKey', undef, 0, 1],
     ['numAddresses', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

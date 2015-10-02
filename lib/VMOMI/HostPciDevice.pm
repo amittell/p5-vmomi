@@ -1,6 +1,10 @@
 package VMOMI::HostPciDevice;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['id', undef, 0, 1],
     ['classId', undef, 0, 1],
@@ -15,6 +19,10 @@ our @class_members = (
     ['parentBridge', undef, 0, 0],
     ['deviceName', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

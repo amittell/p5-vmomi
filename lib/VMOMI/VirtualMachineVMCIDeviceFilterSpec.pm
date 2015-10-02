@@ -1,6 +1,10 @@
 package VMOMI::VirtualMachineVMCIDeviceFilterSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['rank', undef, 0, 1],
     ['action', undef, 0, 1],
@@ -9,6 +13,10 @@ our @class_members = (
     ['lowerDstPortBoundary', undef, 0, 0],
     ['upperDstPortBoundary', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

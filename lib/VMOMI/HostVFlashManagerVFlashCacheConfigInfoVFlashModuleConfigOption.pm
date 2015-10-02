@@ -1,6 +1,10 @@
 package VMOMI::HostVFlashManagerVFlashCacheConfigInfoVFlashModuleConfigOption;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vFlashModule', undef, 0, 1],
     ['vFlashModuleVersion', undef, 0, 1],
@@ -11,6 +15,10 @@ our @class_members = (
     ['reservationInMBOption', 'LongOption', 0, 1],
     ['maxDiskSizeInKB', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

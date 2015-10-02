@@ -1,9 +1,18 @@
 package VMOMI::HostDatastoreExistsConnectInfo;
 use parent 'VMOMI::HostDatastoreConnectInfo';
 
+our @class_ancestors = ( 
+    'HostDatastoreConnectInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['newDatastoreName', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

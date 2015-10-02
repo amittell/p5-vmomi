@@ -1,9 +1,17 @@
 package VMOMI::HostDateTimeSystem;
 use parent 'VMOMI::ManagedObject';
 
+our @class_ancestors = (
+    'ManagedObject',
+);
+
 our @class_members = (
     ['dateTimeInfo', 'HostDateTimeInfo', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

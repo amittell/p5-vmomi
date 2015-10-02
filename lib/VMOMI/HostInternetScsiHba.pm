@@ -1,6 +1,11 @@
 package VMOMI::HostInternetScsiHba;
 use parent 'VMOMI::HostHostBusAdapter';
 
+our @class_ancestors = ( 
+    'HostHostBusAdapter',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['isSoftwareBased', 'boolean', 0, 1],
     ['canBeDisabled', 'boolean', 0, 0],
@@ -22,6 +27,10 @@ our @class_members = (
     ['maxSpeedMb', undef, 0, 0],
     ['currentSpeedMb', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

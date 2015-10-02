@@ -1,6 +1,10 @@
 package VMOMI::HostMountInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['path', undef, 0, 0],
     ['accessMode', undef, 0, 1],
@@ -8,6 +12,10 @@ our @class_members = (
     ['accessible', 'boolean', 0, 0],
     ['inaccessibleReason', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

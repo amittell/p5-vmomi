@@ -1,10 +1,19 @@
 package VMOMI::VirtualControllerOption;
 use parent 'VMOMI::VirtualDeviceOption';
 
+our @class_ancestors = ( 
+    'VirtualDeviceOption',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['devices', 'IntOption', 0, 1],
     ['supportedDevice', undef, 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

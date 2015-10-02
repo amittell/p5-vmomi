@@ -1,9 +1,15 @@
 package VMOMI::ArrayOfOvfNetworkMapping;
 use parent 'VMOMI::ComplexType';
 
+our @class_ancestors = ( );
+
 our @class_members = ( 
     ['OvfNetworkMapping', 'OvfNetworkMapping', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

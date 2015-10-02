@@ -1,6 +1,10 @@
 package VMOMI::VAppOvfSectionInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 0],
     ['namespace', undef, 0, 0],
@@ -8,6 +12,10 @@ our @class_members = (
     ['atEnvelopeLevel', 'boolean', 0, 0],
     ['contents', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

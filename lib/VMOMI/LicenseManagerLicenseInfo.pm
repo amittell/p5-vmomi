@@ -1,6 +1,10 @@
 package VMOMI::LicenseManagerLicenseInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['licenseKey', undef, 0, 1],
     ['editionKey', undef, 0, 1],
@@ -11,6 +15,10 @@ our @class_members = (
     ['properties', 'KeyAnyValue', 1, 0],
     ['labels', 'KeyValue', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

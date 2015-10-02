@@ -1,10 +1,19 @@
 package VMOMI::ClusterFailoverLevelAdmissionControlPolicy;
 use parent 'VMOMI::ClusterDasAdmissionControlPolicy';
 
+our @class_ancestors = ( 
+    'ClusterDasAdmissionControlPolicy',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['failoverLevel', undef, 0, 1],
     ['slotPolicy', 'ClusterSlotPolicy', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

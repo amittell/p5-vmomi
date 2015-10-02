@@ -1,10 +1,20 @@
 package VMOMI::UnlicensedVirtualMachinesEvent;
 use parent 'VMOMI::LicenseEvent';
 
+our @class_ancestors = ( 
+    'LicenseEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['unlicensed', undef, 0, 1],
     ['available', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

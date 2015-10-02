@@ -1,6 +1,11 @@
 package VMOMI::VirtualMachineDatastoreInfo;
 use parent 'VMOMI::VirtualMachineTargetInfo';
 
+our @class_ancestors = ( 
+    'VirtualMachineTargetInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['datastore', 'DatastoreSummary', 0, 1],
     ['capability', 'DatastoreCapability', 0, 1],
@@ -11,6 +16,10 @@ our @class_members = (
     ['mode', undef, 0, 1],
     ['vStorageSupport', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

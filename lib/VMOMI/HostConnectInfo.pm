@@ -1,6 +1,10 @@
 package VMOMI::HostConnectInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['serverIp', undef, 0, 0],
     ['inDasCluster', 'boolean', 0, 0],
@@ -13,6 +17,10 @@ our @class_members = (
     ['license', 'HostLicenseConnectInfo', 0, 0],
     ['capability', 'HostCapability', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,7 +1,17 @@
 package VMOMI::ScheduledTaskStartedEvent;
 use parent 'VMOMI::ScheduledTaskEvent';
 
+our @class_ancestors = ( 
+    'ScheduledTaskEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

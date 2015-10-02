@@ -1,9 +1,18 @@
 package VMOMI::HostInternetScsiHbaParamValue;
 use parent 'VMOMI::OptionValue';
 
+our @class_ancestors = ( 
+    'OptionValue',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['isInherited', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

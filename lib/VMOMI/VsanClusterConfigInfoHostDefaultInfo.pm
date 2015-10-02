@@ -1,11 +1,19 @@
 package VMOMI::VsanClusterConfigInfoHostDefaultInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['uuid', undef, 0, 0],
     ['autoClaimStorage', 'boolean', 0, 0],
     ['checksumEnabled', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

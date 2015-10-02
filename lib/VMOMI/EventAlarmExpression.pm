@@ -1,6 +1,11 @@
 package VMOMI::EventAlarmExpression;
 use parent 'VMOMI::AlarmExpression';
 
+our @class_ancestors = ( 
+    'AlarmExpression',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['comparisons', 'EventAlarmExpressionComparison', 1, 0],
     ['eventType', undef, 0, 1],
@@ -8,6 +13,10 @@ our @class_members = (
     ['objectType', undef, 0, 0],
     ['status', 'ManagedEntityStatus', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

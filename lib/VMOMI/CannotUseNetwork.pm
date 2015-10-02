@@ -1,6 +1,12 @@
 package VMOMI::CannotUseNetwork;
 use parent 'VMOMI::VmConfigFault';
 
+our @class_ancestors = ( 
+    'VmConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['device', undef, 0, 1],
     ['backing', undef, 0, 1],
@@ -8,6 +14,10 @@ our @class_members = (
     ['reason', undef, 0, 1],
     ['network', 'ManagedObjectReference', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

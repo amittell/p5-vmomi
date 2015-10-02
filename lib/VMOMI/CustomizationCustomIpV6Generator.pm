@@ -1,9 +1,18 @@
 package VMOMI::CustomizationCustomIpV6Generator;
 use parent 'VMOMI::CustomizationIpV6Generator';
 
+our @class_ancestors = ( 
+    'CustomizationIpV6Generator',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['argument', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

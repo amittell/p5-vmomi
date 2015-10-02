@@ -1,6 +1,10 @@
 package VMOMI::VAppEntityConfigInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', 'ManagedObjectReference', 0, 0],
     ['tag', undef, 0, 0],
@@ -12,6 +16,10 @@ our @class_members = (
     ['stopAction', undef, 0, 0],
     ['destroyWithParent', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

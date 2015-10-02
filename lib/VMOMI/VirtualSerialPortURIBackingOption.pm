@@ -1,7 +1,17 @@
 package VMOMI::VirtualSerialPortURIBackingOption;
 use parent 'VMOMI::VirtualDeviceURIBackingOption';
 
+our @class_ancestors = ( 
+    'VirtualDeviceURIBackingOption',
+    'VirtualDeviceBackingOption',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

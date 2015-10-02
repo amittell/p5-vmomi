@@ -1,6 +1,10 @@
 package VMOMI::PlacementSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['priority', 'VirtualMachineMovePriority', 0, 0],
     ['vm', 'ManagedObjectReference', 0, 0],
@@ -16,6 +20,10 @@ our @class_members = (
     ['cloneSpec', 'VirtualMachineCloneSpec', 0, 0],
     ['cloneName', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

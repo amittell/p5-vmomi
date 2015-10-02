@@ -1,9 +1,19 @@
 package VMOMI::VirtualPointingDeviceDeviceBackingInfo;
 use parent 'VMOMI::VirtualDeviceDeviceBackingInfo';
 
+our @class_ancestors = ( 
+    'VirtualDeviceDeviceBackingInfo',
+    'VirtualDeviceBackingInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['hostPointingDevice', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::HostUnresolvedVmfsVolume;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['extent', 'HostUnresolvedVmfsExtent', 1, 1],
     ['vmfsLabel', undef, 0, 1],
@@ -8,6 +12,10 @@ our @class_members = (
     ['totalBlocks', undef, 0, 1],
     ['resolveStatus', 'HostUnresolvedVmfsVolumeResolveStatus', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

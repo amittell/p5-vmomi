@@ -1,11 +1,19 @@
 package VMOMI::GuestFileAttributes;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['modificationTime', undef, 0, 0],
     ['accessTime', undef, 0, 0],
     ['symlinkTarget', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

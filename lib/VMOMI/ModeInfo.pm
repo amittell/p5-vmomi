@@ -1,6 +1,10 @@
 package VMOMI::ModeInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['browse', undef, 0, 0],
     ['read', undef, 0, 1],
@@ -9,6 +13,10 @@ our @class_members = (
     ['admin', undef, 0, 0],
     ['full', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

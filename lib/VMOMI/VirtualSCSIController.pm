@@ -1,11 +1,21 @@
 package VMOMI::VirtualSCSIController;
 use parent 'VMOMI::VirtualController';
 
+our @class_ancestors = ( 
+    'VirtualController',
+    'VirtualDevice',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['hotAddRemove', 'boolean', 0, 0],
     ['sharedBus', 'VirtualSCSISharing', 0, 1],
     ['scsiCtlrUnitNumber', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

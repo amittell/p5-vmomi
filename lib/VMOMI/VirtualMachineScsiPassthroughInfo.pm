@@ -1,11 +1,20 @@
 package VMOMI::VirtualMachineScsiPassthroughInfo;
 use parent 'VMOMI::VirtualMachineTargetInfo';
 
+our @class_ancestors = ( 
+    'VirtualMachineTargetInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['scsiClass', undef, 0, 1],
     ['vendor', undef, 0, 1],
     ['physicalUnitNumber', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

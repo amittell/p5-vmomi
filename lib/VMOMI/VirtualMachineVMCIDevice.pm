@@ -1,12 +1,21 @@
 package VMOMI::VirtualMachineVMCIDevice;
 use parent 'VMOMI::VirtualDevice';
 
+our @class_ancestors = ( 
+    'VirtualDevice',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['id', undef, 0, 0],
     ['allowUnrestrictedCommunication', 'boolean', 0, 0],
     ['filterEnable', 'boolean', 0, 0],
     ['filterInfo', 'VirtualMachineVMCIDeviceFilterInfo', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

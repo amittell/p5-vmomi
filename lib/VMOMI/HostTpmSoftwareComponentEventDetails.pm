@@ -1,12 +1,21 @@
 package VMOMI::HostTpmSoftwareComponentEventDetails;
 use parent 'VMOMI::HostTpmEventDetails';
 
+our @class_ancestors = ( 
+    'HostTpmEventDetails',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['componentName', undef, 0, 1],
     ['vibName', undef, 0, 1],
     ['vibVersion', undef, 0, 1],
     ['vibVendor', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

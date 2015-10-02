@@ -1,6 +1,10 @@
 package VMOMI::VirtualMachineRuntimeInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['device', 'VirtualMachineDeviceRuntimeInfo', 1, 0],
     ['host', 'ManagedObjectReference', 0, 0],
@@ -31,6 +35,10 @@ our @class_members = (
     ['snapshotInBackground', 'boolean', 0, 0],
     ['quiescedForkParent', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

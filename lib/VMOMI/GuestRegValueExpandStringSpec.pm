@@ -1,9 +1,18 @@
 package VMOMI::GuestRegValueExpandStringSpec;
 use parent 'VMOMI::GuestRegValueDataSpec';
 
+our @class_ancestors = ( 
+    'GuestRegValueDataSpec',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['value', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

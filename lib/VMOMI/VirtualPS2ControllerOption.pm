@@ -1,10 +1,20 @@
 package VMOMI::VirtualPS2ControllerOption;
 use parent 'VMOMI::VirtualControllerOption';
 
+our @class_ancestors = ( 
+    'VirtualControllerOption',
+    'VirtualDeviceOption',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['numKeyboards', 'IntOption', 0, 1],
     ['numPointingDevices', 'IntOption', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

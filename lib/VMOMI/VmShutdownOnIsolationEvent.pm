@@ -1,10 +1,21 @@
 package VMOMI::VmShutdownOnIsolationEvent;
 use parent 'VMOMI::VmPoweredOffEvent';
 
+our @class_ancestors = ( 
+    'VmPoweredOffEvent',
+    'VmEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['isolatedHost', 'HostEventArgument', 0, 1],
     ['shutdownResult', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

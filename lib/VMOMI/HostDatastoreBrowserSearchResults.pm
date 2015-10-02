@@ -1,11 +1,19 @@
 package VMOMI::HostDatastoreBrowserSearchResults;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['datastore', 'ManagedObjectReference', 0, 0],
     ['folderPath', undef, 0, 0],
     ['file', 'FileInfo', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

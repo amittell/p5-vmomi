@@ -1,7 +1,17 @@
 package VMOMI::GeneralHostWarningEvent;
 use parent 'VMOMI::GeneralEvent';
 
+our @class_ancestors = ( 
+    'GeneralEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

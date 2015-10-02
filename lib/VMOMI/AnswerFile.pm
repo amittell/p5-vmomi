@@ -1,11 +1,19 @@
 package VMOMI::AnswerFile;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['userInput', 'ProfileDeferredPolicyOptionParameter', 1, 0],
     ['createdTime', undef, 0, 1],
     ['modifiedTime', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

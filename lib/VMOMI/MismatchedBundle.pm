@@ -1,12 +1,21 @@
 package VMOMI::MismatchedBundle;
 use parent 'VMOMI::VimFault';
 
+our @class_ancestors = ( 
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['bundleUuid', undef, 0, 1],
     ['hostUuid', undef, 0, 1],
     ['bundleBuildNumber', undef, 0, 1],
     ['hostBuildNumber', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,11 +1,21 @@
 package VMOMI::InsufficientAgentVmsDeployed;
 use parent 'VMOMI::InsufficientResourcesFault';
 
+our @class_ancestors = ( 
+    'InsufficientResourcesFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['hostName', undef, 0, 1],
     ['requiredNumAgentVms', undef, 0, 1],
     ['currentNumAgentVms', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

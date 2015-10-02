@@ -1,12 +1,20 @@
 package VMOMI::HostIpConfig;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['dhcp', 'boolean', 0, 1],
     ['ipAddress', undef, 0, 0],
     ['subnetMask', undef, 0, 0],
     ['ipV6Config', 'HostIpConfigIpV6AddressConfiguration', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

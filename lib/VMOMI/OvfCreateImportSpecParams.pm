@@ -1,6 +1,11 @@
 package VMOMI::OvfCreateImportSpecParams;
 use parent 'VMOMI::OvfManagerCommonParams';
 
+our @class_ancestors = ( 
+    'OvfManagerCommonParams',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['entityName', undef, 0, 1],
     ['hostSystem', 'ManagedObjectReference', 0, 0],
@@ -12,6 +17,10 @@ our @class_members = (
     ['diskProvisioning', undef, 0, 0],
     ['instantiationOst', 'OvfConsumerOstNode', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

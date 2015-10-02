@@ -1,10 +1,19 @@
 package VMOMI::PerfEntityMetric;
 use parent 'VMOMI::PerfEntityMetricBase';
 
+our @class_ancestors = ( 
+    'PerfEntityMetricBase',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['sampleInfo', 'PerfSampleInfo', 1, 0],
     ['value', 'PerfMetricSeries', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

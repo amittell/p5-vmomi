@@ -1,9 +1,19 @@
 package VMOMI::ScheduledTaskFailedEvent;
 use parent 'VMOMI::ScheduledTaskEvent';
 
+our @class_ancestors = ( 
+    'ScheduledTaskEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['reason', 'LocalizedMethodFault', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

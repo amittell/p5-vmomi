@@ -1,10 +1,18 @@
 package VMOMI::IoFilterHostIssue;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['host', 'ManagedObjectReference', 0, 1],
     ['issue', 'LocalizedMethodFault', 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

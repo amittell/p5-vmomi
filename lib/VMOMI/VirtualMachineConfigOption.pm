@@ -1,6 +1,10 @@
 package VMOMI::VirtualMachineConfigOption;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['version', undef, 0, 1],
     ['description', undef, 0, 1],
@@ -14,6 +18,10 @@ our @class_members = (
     ['supportedOvfEnvironmentTransport', undef, 1, 0],
     ['supportedOvfInstallTransport', undef, 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

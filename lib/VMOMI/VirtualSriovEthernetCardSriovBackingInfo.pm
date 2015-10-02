@@ -1,11 +1,20 @@
 package VMOMI::VirtualSriovEthernetCardSriovBackingInfo;
 use parent 'VMOMI::VirtualDeviceBackingInfo';
 
+our @class_ancestors = ( 
+    'VirtualDeviceBackingInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['physicalFunctionBacking', 'VirtualPCIPassthroughDeviceBackingInfo', 0, 0],
     ['virtualFunctionBacking', 'VirtualPCIPassthroughDeviceBackingInfo', 0, 0],
     ['virtualFunctionIndex', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

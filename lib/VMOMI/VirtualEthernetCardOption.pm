@@ -1,6 +1,11 @@
 package VMOMI::VirtualEthernetCardOption;
 use parent 'VMOMI::VirtualDeviceOption';
 
+our @class_ancestors = ( 
+    'VirtualDeviceOption',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['supportedOUI', 'ChoiceOption', 0, 1],
     ['macType', 'ChoiceOption', 0, 1],
@@ -8,6 +13,10 @@ our @class_members = (
     ['vmDirectPathGen2Supported', 'boolean', 0, 0],
     ['uptCompatibilityEnabled', 'BoolOption', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

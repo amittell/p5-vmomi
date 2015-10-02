@@ -1,10 +1,19 @@
 package VMOMI::DisallowedChangeByService;
 use parent 'VMOMI::RuntimeFault';
 
+our @class_ancestors = ( 
+    'RuntimeFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['serviceName', undef, 0, 1],
     ['disallowedChange', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,11 @@
 package VMOMI::VirtualMachineVideoCard;
 use parent 'VMOMI::VirtualDevice';
 
+our @class_ancestors = ( 
+    'VirtualDevice',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['videoRamSizeInKB', undef, 0, 0],
     ['numDisplays', undef, 0, 0],
@@ -9,6 +14,10 @@ our @class_members = (
     ['use3dRenderer', undef, 0, 0],
     ['graphicsMemorySizeInKB', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::GuestNicInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['network', undef, 0, 0],
     ['ipAddress', undef, 1, 0],
@@ -11,6 +15,10 @@ our @class_members = (
     ['ipConfig', 'NetIpConfigInfo', 0, 0],
     ['netBIOSConfig', 'NetBIOSConfigInfo', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

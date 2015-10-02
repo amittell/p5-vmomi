@@ -1,6 +1,12 @@
 package VMOMI::EVCMode;
 use parent 'VMOMI::ElementDescription';
 
+our @class_ancestors = ( 
+    'ElementDescription',
+    'Description',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['guaranteedCPUFeatures', 'HostCpuIdInfo', 1, 0],
     ['featureCapability', 'HostFeatureCapability', 1, 0],
@@ -10,6 +16,10 @@ our @class_members = (
     ['track', undef, 1, 0],
     ['vendorTier', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

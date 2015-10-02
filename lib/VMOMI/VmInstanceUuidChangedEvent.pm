@@ -1,10 +1,20 @@
 package VMOMI::VmInstanceUuidChangedEvent;
 use parent 'VMOMI::VmEvent';
 
+our @class_ancestors = ( 
+    'VmEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['oldInstanceUuid', undef, 0, 1],
     ['newInstanceUuid', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

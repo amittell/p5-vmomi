@@ -1,9 +1,18 @@
 package VMOMI::ClusterDrsFaultsFaultsByVirtualDisk;
 use parent 'VMOMI::ClusterDrsFaultsFaultsByVm';
 
+our @class_ancestors = ( 
+    'ClusterDrsFaultsFaultsByVm',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['disk', 'VirtualDiskId', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

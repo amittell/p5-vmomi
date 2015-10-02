@@ -1,12 +1,21 @@
 package VMOMI::VAppConfigSpec;
 use parent 'VMOMI::VmConfigSpec';
 
+our @class_ancestors = ( 
+    'VmConfigSpec',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['entityConfig', 'VAppEntityConfigInfo', 1, 0],
     ['annotation', undef, 0, 0],
     ['instanceUuid', undef, 0, 0],
     ['managedBy', 'ManagedByInfo', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

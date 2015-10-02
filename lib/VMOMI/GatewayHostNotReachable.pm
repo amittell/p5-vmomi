@@ -1,7 +1,19 @@
 package VMOMI::GatewayHostNotReachable;
 use parent 'VMOMI::GatewayToHostConnectFault';
 
+our @class_ancestors = ( 
+    'GatewayToHostConnectFault',
+    'GatewayConnectFault',
+    'HostConnectFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

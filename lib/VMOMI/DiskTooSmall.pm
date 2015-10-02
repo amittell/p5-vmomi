@@ -1,7 +1,18 @@
 package VMOMI::DiskTooSmall;
 use parent 'VMOMI::VsanDiskFault';
 
+our @class_ancestors = ( 
+    'VsanDiskFault',
+    'VsanFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

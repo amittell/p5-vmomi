@@ -1,10 +1,20 @@
 package VMOMI::ScheduledTaskEmailFailedEvent;
 use parent 'VMOMI::ScheduledTaskEvent';
 
+our @class_ancestors = ( 
+    'ScheduledTaskEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['to', undef, 0, 1],
     ['reason', 'LocalizedMethodFault', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,9 +1,18 @@
 package VMOMI::InvalidArgument;
 use parent 'VMOMI::RuntimeFault';
 
+our @class_ancestors = ( 
+    'RuntimeFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['invalidProperty', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

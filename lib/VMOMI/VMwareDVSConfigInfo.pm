@@ -1,6 +1,11 @@
 package VMOMI::VMwareDVSConfigInfo;
 use parent 'VMOMI::DVSConfigInfo';
 
+our @class_ancestors = ( 
+    'DVSConfigInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vspanSession', 'VMwareVspanSession', 1, 0],
     ['pvlanConfig', 'VMwareDVSPvlanMapEntry', 1, 0],
@@ -11,6 +16,10 @@ our @class_members = (
     ['lacpApiVersion', undef, 0, 0],
     ['multicastFilteringMode', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

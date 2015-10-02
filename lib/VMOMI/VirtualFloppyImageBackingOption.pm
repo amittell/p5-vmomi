@@ -1,7 +1,17 @@
 package VMOMI::VirtualFloppyImageBackingOption;
 use parent 'VMOMI::VirtualDeviceFileBackingOption';
 
+our @class_ancestors = ( 
+    'VirtualDeviceFileBackingOption',
+    'VirtualDeviceBackingOption',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

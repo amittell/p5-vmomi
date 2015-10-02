@@ -1,9 +1,22 @@
 package VMOMI::MonthlyByDayTaskScheduler;
 use parent 'VMOMI::MonthlyTaskScheduler';
 
+our @class_ancestors = ( 
+    'MonthlyTaskScheduler',
+    'DailyTaskScheduler',
+    'HourlyTaskScheduler',
+    'RecurrentTaskScheduler',
+    'TaskScheduler',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['day', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

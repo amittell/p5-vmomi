@@ -1,10 +1,18 @@
 package VMOMI::VsanHostClusterStatusStateCompletionEstimate;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['completeTime', undef, 0, 0],
     ['percentComplete', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

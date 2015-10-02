@@ -1,10 +1,18 @@
 package VMOMI::DatastoreMountPathDatastorePair;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['oldMountPath', undef, 0, 1],
     ['datastore', 'ManagedObjectReference', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

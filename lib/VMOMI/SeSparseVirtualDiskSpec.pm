@@ -1,9 +1,19 @@
 package VMOMI::SeSparseVirtualDiskSpec;
 use parent 'VMOMI::FileBackedVirtualDiskSpec';
 
+our @class_ancestors = ( 
+    'FileBackedVirtualDiskSpec',
+    'VirtualDiskSpec',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['grainSizeKb', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

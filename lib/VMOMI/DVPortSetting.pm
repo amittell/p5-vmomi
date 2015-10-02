@@ -1,6 +1,10 @@
 package VMOMI::DVPortSetting;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['blocked', 'BoolPolicy', 0, 0],
     ['vmDirectPathGen2Allowed', 'BoolPolicy', 0, 0],
@@ -10,6 +14,10 @@ our @class_members = (
     ['networkResourcePoolKey', 'StringPolicy', 0, 0],
     ['filterPolicy', 'DvsFilterPolicy', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,12 +1,20 @@
 package VMOMI::VirtualMachineDisplayTopology;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['x', undef, 0, 1],
     ['y', undef, 0, 1],
     ['width', undef, 0, 1],
     ['height', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,9 +1,19 @@
 package VMOMI::DvsTrafficFilterConfig;
 use parent 'VMOMI::DvsFilterConfig';
 
+our @class_ancestors = ( 
+    'DvsFilterConfig',
+    'InheritablePolicy',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['trafficRuleset', 'DvsTrafficRuleset', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

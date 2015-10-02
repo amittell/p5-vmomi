@@ -1,9 +1,18 @@
 package VMOMI::TaskHistoryCollector;
 use parent 'VMOMI::HistoryCollector';
 
+our @class_ancestors = (
+    'HistoryCollector',
+    'ManagedObject',
+);
+
 our @class_members = ( 
     ['latestPage', 'TaskInfo', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

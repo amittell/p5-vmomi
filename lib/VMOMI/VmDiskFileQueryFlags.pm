@@ -1,6 +1,10 @@
 package VMOMI::VmDiskFileQueryFlags;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['diskType', 'boolean', 0, 1],
     ['capacityKb', 'boolean', 0, 1],
@@ -9,6 +13,10 @@ our @class_members = (
     ['diskExtents', 'boolean', 0, 0],
     ['thin', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

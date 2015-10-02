@@ -1,10 +1,19 @@
 package VMOMI::LockerReconfiguredEvent;
 use parent 'VMOMI::Event';
 
+our @class_ancestors = ( 
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['oldDatastore', 'DatastoreEventArgument', 0, 0],
     ['newDatastore', 'DatastoreEventArgument', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

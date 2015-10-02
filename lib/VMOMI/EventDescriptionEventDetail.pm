@@ -1,6 +1,10 @@
 package VMOMI::EventDescriptionEventDetail;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 1],
     ['description', undef, 0, 0],
@@ -12,6 +16,10 @@ our @class_members = (
     ['fullFormat', undef, 0, 1],
     ['longDescription', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

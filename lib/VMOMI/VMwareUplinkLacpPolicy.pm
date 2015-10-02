@@ -1,10 +1,19 @@
 package VMOMI::VMwareUplinkLacpPolicy;
 use parent 'VMOMI::InheritablePolicy';
 
+our @class_ancestors = ( 
+    'InheritablePolicy',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['enable', 'BoolPolicy', 0, 0],
     ['mode', 'StringPolicy', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

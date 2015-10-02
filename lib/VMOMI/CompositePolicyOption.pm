@@ -1,9 +1,18 @@
 package VMOMI::CompositePolicyOption;
 use parent 'VMOMI::PolicyOption';
 
+our @class_ancestors = ( 
+    'PolicyOption',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['option', 'PolicyOption', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

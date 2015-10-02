@@ -1,9 +1,18 @@
 package VMOMI::VirtualDeviceFileBackingOption;
 use parent 'VMOMI::VirtualDeviceBackingOption';
 
+our @class_ancestors = ( 
+    'VirtualDeviceBackingOption',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['fileNameExtensions', 'ChoiceOption', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

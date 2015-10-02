@@ -1,9 +1,22 @@
 package VMOMI::OvfMissingElementNormalBoundary;
 use parent 'VMOMI::OvfMissingElement';
 
+our @class_ancestors = ( 
+    'OvfMissingElement',
+    'OvfElement',
+    'OvfInvalidPackage',
+    'OvfFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['boundary', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

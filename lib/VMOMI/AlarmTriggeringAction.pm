@@ -1,6 +1,11 @@
 package VMOMI::AlarmTriggeringAction;
 use parent 'VMOMI::AlarmAction';
 
+our @class_ancestors = ( 
+    'AlarmAction',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['action', 'Action', 0, 1],
     ['transitionSpecs', 'AlarmTriggeringActionTransitionSpec', 1, 0],
@@ -9,6 +14,10 @@ our @class_members = (
     ['red2yellow', 'boolean', 0, 1],
     ['yellow2green', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

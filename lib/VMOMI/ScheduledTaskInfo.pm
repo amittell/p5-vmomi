@@ -1,6 +1,11 @@
 package VMOMI::ScheduledTaskInfo;
 use parent 'VMOMI::ScheduledTaskSpec';
 
+our @class_ancestors = ( 
+    'ScheduledTaskSpec',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['scheduledTask', 'ManagedObjectReference', 0, 1],
     ['entity', 'ManagedObjectReference', 0, 1],
@@ -15,6 +20,10 @@ our @class_members = (
     ['activeTask', 'ManagedObjectReference', 0, 0],
     ['taskObject', 'ManagedObjectReference', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

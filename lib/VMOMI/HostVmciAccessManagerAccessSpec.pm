@@ -1,11 +1,19 @@
 package VMOMI::HostVmciAccessManagerAccessSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vm', 'ManagedObjectReference', 0, 1],
     ['services', undef, 1, 0],
     ['mode', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

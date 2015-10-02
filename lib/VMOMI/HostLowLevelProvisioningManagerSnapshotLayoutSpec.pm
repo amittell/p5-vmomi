@@ -1,12 +1,20 @@
 package VMOMI::HostLowLevelProvisioningManagerSnapshotLayoutSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['id', undef, 0, 1],
     ['srcFilename', undef, 0, 1],
     ['dstFilename', undef, 0, 1],
     ['disk', 'HostLowLevelProvisioningManagerDiskLayoutSpec', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,11 +1,19 @@
 package VMOMI::PropertyFilterUpdate;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['filter', 'ManagedObjectReference', 0, 1],
     ['objectSet', 'ObjectUpdate', 1, 0],
     ['missingSet', 'MissingObject', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

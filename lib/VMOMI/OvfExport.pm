@@ -1,7 +1,17 @@
 package VMOMI::OvfExport;
 use parent 'VMOMI::OvfFault';
 
+our @class_ancestors = ( 
+    'OvfFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,12 +1,20 @@
 package VMOMI::CustomizationUserData;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['fullName', undef, 0, 1],
     ['orgName', undef, 0, 1],
     ['computerName', 'CustomizationName', 0, 1],
     ['productId', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

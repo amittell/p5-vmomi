@@ -1,9 +1,18 @@
 package VMOMI::ClusterProfileConfigInfo;
 use parent 'VMOMI::ProfileConfigInfo';
 
+our @class_ancestors = ( 
+    'ProfileConfigInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['complyProfile', 'ComplianceProfile', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

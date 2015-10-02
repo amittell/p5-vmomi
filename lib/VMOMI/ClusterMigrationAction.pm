@@ -1,9 +1,18 @@
 package VMOMI::ClusterMigrationAction;
 use parent 'VMOMI::ClusterAction';
 
+our @class_ancestors = ( 
+    'ClusterAction',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['drsMigration', 'ClusterDrsMigration', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

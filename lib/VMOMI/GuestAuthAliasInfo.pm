@@ -1,10 +1,18 @@
 package VMOMI::GuestAuthAliasInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['subject', 'GuestAuthSubject', 0, 1],
     ['comment', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

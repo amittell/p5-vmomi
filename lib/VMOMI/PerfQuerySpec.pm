@@ -1,6 +1,10 @@
 package VMOMI::PerfQuerySpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['entity', 'ManagedObjectReference', 0, 1],
     ['startTime', undef, 0, 0],
@@ -10,6 +14,10 @@ our @class_members = (
     ['intervalId', undef, 0, 0],
     ['format', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

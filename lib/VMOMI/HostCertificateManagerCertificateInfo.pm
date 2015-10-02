@@ -1,6 +1,10 @@
 package VMOMI::HostCertificateManagerCertificateInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['issuer', undef, 0, 0],
     ['notBefore', undef, 0, 0],
@@ -8,6 +12,10 @@ our @class_members = (
     ['subject', undef, 0, 0],
     ['status', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

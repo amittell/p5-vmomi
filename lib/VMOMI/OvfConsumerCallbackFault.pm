@@ -1,10 +1,20 @@
 package VMOMI::OvfConsumerCallbackFault;
 use parent 'VMOMI::OvfFault';
 
+our @class_ancestors = ( 
+    'OvfFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['extensionKey', undef, 0, 1],
     ['extensionName', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

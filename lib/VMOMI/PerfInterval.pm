@@ -1,6 +1,10 @@
 package VMOMI::PerfInterval;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 1],
     ['samplingPeriod', undef, 0, 1],
@@ -9,6 +13,10 @@ our @class_members = (
     ['level', undef, 0, 0],
     ['enabled', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

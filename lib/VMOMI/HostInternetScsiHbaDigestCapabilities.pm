@@ -1,12 +1,20 @@
 package VMOMI::HostInternetScsiHbaDigestCapabilities;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['headerDigestSettable', 'boolean', 0, 0],
     ['dataDigestSettable', 'boolean', 0, 0],
     ['targetHeaderDigestSettable', 'boolean', 0, 0],
     ['targetDataDigestSettable', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

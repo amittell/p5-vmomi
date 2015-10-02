@@ -1,7 +1,13 @@
 package VMOMI::DynamicData;
 use parent 'VMOMI::ComplexType';
 
+our @class_ancestors = ( );
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

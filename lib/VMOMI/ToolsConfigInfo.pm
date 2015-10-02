@@ -1,6 +1,10 @@
 package VMOMI::ToolsConfigInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['toolsVersion', undef, 0, 0],
     ['afterPowerOn', 'boolean', 0, 0],
@@ -13,6 +17,10 @@ our @class_members = (
     ['syncTimeWithHost', 'boolean', 0, 0],
     ['lastInstallInfo', 'ToolsConfigInfoToolsLastInstallInfo', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

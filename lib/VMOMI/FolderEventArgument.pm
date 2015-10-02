@@ -1,9 +1,19 @@
 package VMOMI::FolderEventArgument;
 use parent 'VMOMI::EntityEventArgument';
 
+our @class_ancestors = ( 
+    'EntityEventArgument',
+    'EventArgument',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['folder', 'ManagedObjectReference', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

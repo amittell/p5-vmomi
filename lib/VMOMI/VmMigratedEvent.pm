@@ -1,11 +1,21 @@
 package VMOMI::VmMigratedEvent;
 use parent 'VMOMI::VmEvent';
 
+our @class_ancestors = ( 
+    'VmEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['sourceHost', 'HostEventArgument', 0, 1],
     ['sourceDatacenter', 'DatacenterEventArgument', 0, 0],
     ['sourceDatastore', 'DatastoreEventArgument', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

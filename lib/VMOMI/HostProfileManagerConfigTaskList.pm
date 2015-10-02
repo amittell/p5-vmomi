@@ -1,11 +1,19 @@
 package VMOMI::HostProfileManagerConfigTaskList;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['configSpec', 'HostConfigSpec', 0, 0],
     ['taskDescription', 'LocalizableMessage', 1, 0],
     ['taskListRequirement', undef, 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,9 +1,19 @@
 package VMOMI::ClusterCreatedEvent;
 use parent 'VMOMI::ClusterEvent';
 
+our @class_ancestors = ( 
+    'ClusterEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['parent', 'FolderEventArgument', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

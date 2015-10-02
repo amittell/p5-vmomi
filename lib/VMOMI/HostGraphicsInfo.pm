@@ -1,6 +1,10 @@
 package VMOMI::HostGraphicsInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['deviceName', undef, 0, 1],
     ['vendorName', undef, 0, 1],
@@ -9,6 +13,10 @@ our @class_members = (
     ['memorySizeInKB', undef, 0, 1],
     ['vm', 'ManagedObjectReference', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

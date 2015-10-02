@@ -1,10 +1,18 @@
 package VMOMI::HealthSystemRuntime;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['systemHealthInfo', 'HostSystemHealthInfo', 0, 0],
     ['hardwareStatusInfo', 'HostHardwareStatusInfo', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

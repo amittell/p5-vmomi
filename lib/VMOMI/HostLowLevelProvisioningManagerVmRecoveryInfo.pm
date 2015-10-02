@@ -1,12 +1,20 @@
 package VMOMI::HostLowLevelProvisioningManagerVmRecoveryInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['version', undef, 0, 1],
     ['biosUUID', undef, 0, 1],
     ['instanceUUID', undef, 0, 1],
     ['ftInfo', 'FaultToleranceConfigInfo', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

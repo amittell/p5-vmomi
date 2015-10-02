@@ -1,9 +1,18 @@
 package VMOMI::ClusterAntiAffinityRuleSpec;
 use parent 'VMOMI::ClusterRuleInfo';
 
+our @class_ancestors = ( 
+    'ClusterRuleInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vm', 'ManagedObjectReference', 1, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

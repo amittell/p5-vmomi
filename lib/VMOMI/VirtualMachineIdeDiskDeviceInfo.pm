@@ -1,9 +1,19 @@
 package VMOMI::VirtualMachineIdeDiskDeviceInfo;
 use parent 'VMOMI::VirtualMachineDiskDeviceInfo';
 
+our @class_ancestors = ( 
+    'VirtualMachineDiskDeviceInfo',
+    'VirtualMachineTargetInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['partitionTable', 'VirtualMachineIdeDiskDevicePartitionInfo', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

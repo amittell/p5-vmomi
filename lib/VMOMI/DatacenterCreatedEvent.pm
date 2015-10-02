@@ -1,9 +1,19 @@
 package VMOMI::DatacenterCreatedEvent;
 use parent 'VMOMI::DatacenterEvent';
 
+our @class_ancestors = ( 
+    'DatacenterEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['parent', 'FolderEventArgument', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,10 +1,18 @@
 package VMOMI::VAppCloneSpecNetworkMappingPair;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['source', 'ManagedObjectReference', 0, 1],
     ['destination', 'ManagedObjectReference', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

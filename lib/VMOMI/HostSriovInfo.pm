@@ -1,6 +1,11 @@
 package VMOMI::HostSriovInfo;
 use parent 'VMOMI::HostPciPassthruInfo';
 
+our @class_ancestors = ( 
+    'HostPciPassthruInfo',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['sriovEnabled', 'boolean', 0, 1],
     ['sriovCapable', 'boolean', 0, 1],
@@ -9,6 +14,10 @@ our @class_members = (
     ['numVirtualFunction', undef, 0, 1],
     ['maxVirtualFunctionSupported', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

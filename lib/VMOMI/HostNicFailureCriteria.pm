@@ -1,6 +1,10 @@
 package VMOMI::HostNicFailureCriteria;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['checkSpeed', undef, 0, 0],
     ['speed', undef, 0, 0],
@@ -10,6 +14,10 @@ our @class_members = (
     ['percentage', undef, 0, 0],
     ['checkBeacon', 'boolean', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

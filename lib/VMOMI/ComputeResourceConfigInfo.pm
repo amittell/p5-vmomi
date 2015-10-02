@@ -1,11 +1,19 @@
 package VMOMI::ComputeResourceConfigInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vmSwapPlacement', undef, 0, 1],
     ['spbmEnabled', 'boolean', 0, 0],
     ['defaultHardwareVersionKey', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

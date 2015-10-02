@@ -1,6 +1,10 @@
 package VMOMI::HostConnectSpec;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['hostName', undef, 0, 0],
     ['port', undef, 0, 0],
@@ -15,6 +19,10 @@ our @class_members = (
     ['lockdownMode', 'HostLockdownMode', 0, 0],
     ['hostGateway', 'HostGatewaySpec', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

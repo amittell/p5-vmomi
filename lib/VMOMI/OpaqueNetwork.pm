@@ -1,7 +1,18 @@
 package VMOMI::OpaqueNetwork;
 use parent 'VMOMI::Network';
 
+our @class_ancestors = (
+    'Network',
+    'ManagedEntity',
+    'ExtensibleManagedObject',
+    'ManagedObject',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

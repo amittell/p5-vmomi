@@ -1,6 +1,12 @@
 package VMOMI::DvsHostStatusUpdated;
 use parent 'VMOMI::DvsEvent';
 
+our @class_ancestors = ( 
+    'DvsEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['hostMember', 'HostEventArgument', 0, 1],
     ['oldStatus', undef, 0, 0],
@@ -8,6 +14,10 @@ our @class_members = (
     ['oldStatusDetail', undef, 0, 0],
     ['newStatusDetail', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

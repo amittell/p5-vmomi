@@ -1,11 +1,21 @@
 package VMOMI::ExpiredFeatureLicense;
 use parent 'VMOMI::NotEnoughLicenses';
 
+our @class_ancestors = ( 
+    'NotEnoughLicenses',
+    'RuntimeFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['feature', undef, 0, 1],
     ['count', undef, 0, 1],
     ['expirationDate', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

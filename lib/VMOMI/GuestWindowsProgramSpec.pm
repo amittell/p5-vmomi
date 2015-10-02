@@ -1,9 +1,18 @@
 package VMOMI::GuestWindowsProgramSpec;
 use parent 'VMOMI::GuestProgramSpec';
 
+our @class_ancestors = ( 
+    'GuestProgramSpec',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['startMinimized', 'boolean', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

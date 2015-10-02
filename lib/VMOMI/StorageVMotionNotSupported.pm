@@ -1,7 +1,18 @@
 package VMOMI::StorageVMotionNotSupported;
 use parent 'VMOMI::MigrationFeatureNotSupported';
 
+our @class_ancestors = ( 
+    'MigrationFeatureNotSupported',
+    'MigrationFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

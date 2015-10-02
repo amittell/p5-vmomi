@@ -1,10 +1,21 @@
 package VMOMI::MemoryFileFormatNotSupportedByDatastore;
 use parent 'VMOMI::UnsupportedDatastore';
 
+our @class_ancestors = ( 
+    'UnsupportedDatastore',
+    'VmConfigFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['datastoreName', undef, 0, 1],
     ['type', undef, 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

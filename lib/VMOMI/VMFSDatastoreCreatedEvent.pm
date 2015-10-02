@@ -1,9 +1,19 @@
 package VMOMI::VMFSDatastoreCreatedEvent;
 use parent 'VMOMI::HostEvent';
 
+our @class_ancestors = ( 
+    'HostEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['datastore', 'DatastoreEventArgument', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

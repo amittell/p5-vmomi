@@ -1,10 +1,20 @@
 package VMOMI::VmMessageWarningEvent;
 use parent 'VMOMI::VmEvent';
 
+our @class_ancestors = ( 
+    'VmEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['message', undef, 0, 1],
     ['messageInfo', 'VirtualMachineMessage', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

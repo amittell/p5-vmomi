@@ -1,6 +1,10 @@
 package VMOMI::VirtualMachineFlagInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['disableAcceleration', 'boolean', 0, 0],
     ['enableLogging', 'boolean', 0, 0],
@@ -17,6 +21,10 @@ our @class_members = (
     ['recordReplayEnabled', 'boolean', 0, 0],
     ['faultToleranceType', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

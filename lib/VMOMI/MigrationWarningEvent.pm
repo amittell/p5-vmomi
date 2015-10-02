@@ -1,7 +1,18 @@
 package VMOMI::MigrationWarningEvent;
 use parent 'VMOMI::MigrationEvent';
 
+our @class_ancestors = ( 
+    'MigrationEvent',
+    'VmEvent',
+    'Event',
+    'DynamicData',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,10 +1,18 @@
 package VMOMI::HostVirtualNicConnection;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['portgroup', undef, 0, 0],
     ['dvPort', 'DistributedVirtualSwitchPortConnection', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,6 +1,10 @@
 package VMOMI::IscsiPortInfo;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['vnicDevice', undef, 0, 0],
     ['vnic', 'HostVirtualNic', 0, 0],
@@ -14,6 +18,10 @@ our @class_members = (
     ['complianceStatus', 'IscsiStatus', 0, 0],
     ['pathStatus', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

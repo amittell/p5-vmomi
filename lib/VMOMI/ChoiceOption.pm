@@ -1,10 +1,19 @@
 package VMOMI::ChoiceOption;
 use parent 'VMOMI::OptionType';
 
+our @class_ancestors = ( 
+    'OptionType',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['choiceInfo', 'ElementDescription', 1, 1],
     ['defaultIndex', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

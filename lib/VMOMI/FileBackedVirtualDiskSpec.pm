@@ -1,10 +1,19 @@
 package VMOMI::FileBackedVirtualDiskSpec;
 use parent 'VMOMI::VirtualDiskSpec';
 
+our @class_ancestors = ( 
+    'VirtualDiskSpec',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['capacityKb', undef, 0, 1],
     ['profile', 'VirtualMachineProfileSpec', 1, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

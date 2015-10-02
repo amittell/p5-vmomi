@@ -1,7 +1,19 @@
 package VMOMI::GuestRegistryKeyHasSubkeys;
 use parent 'VMOMI::GuestRegistryKeyFault';
 
+our @class_ancestors = ( 
+    'GuestRegistryKeyFault',
+    'GuestRegistryFault',
+    'GuestOperationsFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

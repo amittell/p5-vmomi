@@ -1,6 +1,10 @@
 package VMOMI::DVSNetworkResourcePool;
 use parent 'VMOMI::DynamicData';
 
+our @class_ancestors = ( 
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['key', undef, 0, 1],
     ['name', undef, 0, 0],
@@ -8,6 +12,10 @@ our @class_members = (
     ['configVersion', undef, 0, 1],
     ['allocationInfo', 'DVSNetworkResourcePoolAllocationInfo', 0, 1],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

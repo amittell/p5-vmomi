@@ -244,6 +244,9 @@ sub serialize {
     }
     return $node;
 }
+sub get_class_ancestors {
+    return ();
+}
 
 sub get_class_members {
     return ();

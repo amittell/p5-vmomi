@@ -1,12 +1,22 @@
 package VMOMI::ReplicationVmFault;
 use parent 'VMOMI::ReplicationFault';
 
+our @class_ancestors = ( 
+    'ReplicationFault',
+    'VimFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['reason', undef, 0, 0],
     ['state', undef, 0, 0],
     ['instanceId', undef, 0, 0],
     ['vm', 'ManagedObjectReference', 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

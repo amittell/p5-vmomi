@@ -1,10 +1,20 @@
 package VMOMI::InvalidDasConfigArgument;
 use parent 'VMOMI::InvalidArgument';
 
+our @class_ancestors = ( 
+    'InvalidArgument',
+    'RuntimeFault',
+    'MethodFault',
+);
+
 our @class_members = ( 
     ['entry', undef, 0, 0],
     ['clusterName', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;

@@ -1,10 +1,19 @@
 package VMOMI::DvsUpdateTagNetworkRuleAction;
 use parent 'VMOMI::DvsNetworkRuleAction';
 
+our @class_ancestors = ( 
+    'DvsNetworkRuleAction',
+    'DynamicData',
+);
+
 our @class_members = ( 
     ['qosTag', undef, 0, 0],
     ['dscpTag', undef, 0, 0],
 );
+
+sub get_class_ancestors {
+    return @class_ancestors;
+}
 
 sub get_class_members {
     my $class = shift;
