@@ -73,16 +73,22 @@ my $rules = $cluster->configurationEx->rule;
 foreach my $rule ( @$rules ) {
     print $rule->name . "\n";
     print $rule->enabled . "\n";
-    $rule->enabled(1);
+    $rule->enabled(0);
+    $rule->name('renamed2');
 }
 
 my $rulespec = new VMOMI::ClusterRuleSpec(
     info => $rules->[0], 
-    operation => new VMOMI::ArrayUpdateOperation('edit')
+    operation => new VMOMI::ArrayUpdateOperation('remove'),
+    removeKey => new VMOMI::PrimitiveType($rules->[0]->key, "int"),
 );
 my $spec = new VMOMI::ClusterConfigSpec(rulesSpec => [$rulespec], modify => 0);
 
-$cluster->ReconfigureCluster_Task(spec => $spec, modify => 1);
+try {
+    $cluster->ReconfigureCluster_Task(spec => $spec, modify => 1);
+} catch {
+    die $_;
+};
 
 $sm->Logout( );
 

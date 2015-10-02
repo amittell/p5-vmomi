@@ -1,5 +1,7 @@
 package VMOMI::PrimitiveType;
 
+use Encode qw(decode_utf8 encode_utf8);
+
 use constant P5NS => 'VMOMI';
 
 sub new {

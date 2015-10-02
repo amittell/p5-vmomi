@@ -208,9 +208,9 @@ sub serialize {
                 }
                 
                 # ComplexType, SimpleType, PrimitiveType
-                $c_class = ref $val;
+                $c_class = ref($val);
                 if ($m_class eq 'anyType') {
-                    unless (defined $c_class) {
+                    if ($c_class eq '') {
                         # If value is not an object, serialize as unspecified 'string'
                         $c_node->appendText($val);
                         $node->addChild($c_node);
