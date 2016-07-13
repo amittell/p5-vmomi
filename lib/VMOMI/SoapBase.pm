@@ -71,7 +71,6 @@ sub new {
     $user_agent = new LWP::UserAgent(
         agent    => $self->agent_string,
         ssl_opts => $ssl_opts,
-        timeout  => 10,
     );
     
     $conn_cache = new LWP::ConnCache();
@@ -268,7 +267,7 @@ sub soap_call {
 
     # SOAP Response
     $response = $self->user_agent->request($request);
-        
+    
     # Review error handling for the reader interface; return to status code evaluation?
     $reader = new XML::LibXML::Reader(string => $response->content);
     

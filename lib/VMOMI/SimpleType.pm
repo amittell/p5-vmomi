@@ -32,6 +32,14 @@ sub serialize {
     return $node;
 }
 
+sub TO_JSON {
+    my $self = shift;
+
+    my $class = ref($self);
+    $class =~ s/VMOMI:://;
+    return {_class => $class, val => $self->{'val'}};
+}
+
 sub val {
     my $self = shift;
     $self->{'val'} = shift if @_;

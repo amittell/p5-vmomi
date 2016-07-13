@@ -244,6 +244,33 @@ sub serialize {
     }
     return $node;
 }
+
+sub TO_JSON {
+    my $self = shift;
+    my $this = { };
+    my @ancestors = $self->get_class_ancestors();
+    
+    $this->{'_class'} = ref $self;
+    $this->{'_class'} =~ s/VMOMI:://;
+    $this->{'_ancestors'} = \@ancestors;
+    foreach ( $self->get_class_members() ) {
+        my ($name, $type, $is_array, $is_mandatory) = @$_;
+        my $val = $self->{$name};
+
+        if (defined $val) {
+            # MoRefs are converted to ManagedObject
+            if ( $type eq 'ManagedObjectReference' and 
+                    $val->isa(P5NS . "::ManagedObject") ) {
+                $this->{$name} = $val->{'moref'};
+            } else {
+                $this->{$name} = $val;
+            }
+        }
+    }
+
+    return $this;
+}
+
 sub get_class_ancestors {
     return ();
 }
