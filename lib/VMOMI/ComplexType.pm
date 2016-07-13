@@ -253,6 +253,19 @@ sub TO_JSON {
     $this->{'_class'} = ref $self;
     $this->{'_class'} =~ s/VMOMI:://;
     $this->{'_ancestors'} = \@ancestors;
+
+    # ArrayOf*
+    if ($this->{'_class'} =~ m/^ArrayOf/) {
+        # expect only one member for ArrayOf* objects
+        my ($name, $type, $is_array, $is_mandatory) = @{ $self->get_class_members() }[0];
+
+        if (not defined $self->{$name}) {
+            return [ ];
+        } else {
+            return $self->{$name};
+        }
+    }
+
     foreach ( $self->get_class_members() ) {
         my ($name, $type, $is_array, $is_mandatory) = @$_;
         my $val = $self->{$name};
@@ -265,6 +278,11 @@ sub TO_JSON {
             } else {
                 $this->{$name} = $val;
             }
+
+            # # For anyType, when a ManagedObject, assume ManagedObjectReference
+            # if ( $type eq 'anyType' and eval { $val->isa(P5NS . "::ManagedObject")} ) {
+            #     $this->{$name} = $val->{'moref'};
+            # } 
         }
     }
 

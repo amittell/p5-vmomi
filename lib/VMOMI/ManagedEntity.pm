@@ -33,4 +33,12 @@ sub get_class_members {
     return (@super_members, @class_members);
 }
 
+sub TO_JSON {
+    my $self = shift;
+    my $this = { };
+    my @ancestors = $self->get_class_ancestors();
+    
+    return $self->{'moref'};
+}
+
 1;
